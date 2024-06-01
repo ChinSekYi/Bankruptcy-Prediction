@@ -9,4 +9,6 @@ black
 isort
 plotly
 tqdm
+ipykernel
+requests
 -e .
