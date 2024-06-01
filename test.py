@@ -1,21 +1,12 @@
-from typing import List
+import logging
+import os
+import sys
+from datetime import datetime
 
-HYPEN_E_DOT = "-e ."
+LOG_FILE = f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log"
+logs_path = os.path.join(os.getcwd(), "logs", LOG_FILE)
+LOG_FILE_PATH = os.path.join(logs_path, LOG_FILE)
 
-
-def get_requirements(file_path: str) -> List[str]:
-    """
-    this function will return the list of requirements
-    """
-    requirements = []
-    with open(file_path) as file_obj:
-        requirements = file_obj.readlines()
-        requirements = [req.replace("\n", " ") for req in requirements]
-
-        if HYPEN_E_DOT in requirements:
-            requirements.remove(HYPEN_E_DOT)
-
-    return requirements
-
-
-print(get_requirements("requirements.txt"))
+print(LOG_FILE)
+print(logs_path)
+print(LOG_FILE_PATH)
