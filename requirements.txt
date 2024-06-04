@@ -8,6 +8,7 @@ scipy
 black
 isort
 plotly
+cufflinks
 tqdm
 ipykernel
 requests
