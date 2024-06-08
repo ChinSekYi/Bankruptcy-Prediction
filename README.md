@@ -1,4 +1,4 @@
-# CS3244 Project: Predict Company Bankruptcy using Machine Learning
+# Predict Company Bankruptcy using Machine Learning
 
 
 ## Project motivation
