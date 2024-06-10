@@ -5,13 +5,15 @@
 In today's dynamic business landscape, exemplified by recent events such as the bankruptcy of Silicon Valley Bank, the ability to anticipate and mitigate financial risks is crucial for sustainable growth and stability. This project aims to develop a robust predictive model of company bankruptcy, leveraging advanced machine learning algorithms and financial data analysis techniques. By accurately identifying early warning signs of financial distress, this model will empower stakeholders to make informed decisions and implement timely interventions to prevent bankruptcy. This model will also help investors to mitigate financial risks, minimizing their loss. 
 
 ## Description
-Our project will explore and compare the usage of different machine learning models to predict company bankruptcy. We will evaluate the different models using various metrics, and improve its accuracy for better model performance. We will also use custom functions which will work well on our specific dataset. The dataset is about bankruptcy prediction of Polish companies. The bankrupt companies were analyzed in the period 2000-2012, while the still operating companies were evaluated from 2007 to 2013. The dataset consists of 64 features that pertain to various financial ratios and performance metrics that encompass aspects such as profitability, liquidity, solvency, and operational efficiency of a company.
+Our project will explore and compare the usage of different machine learning models to predict company bankruptcy. We will evaluate the different models using various metrics, and improve its accuracy for better model performance. 
+We will also use custom functions which will work well on our specific dataset. The dataset is about bankruptcy prediction of Polish companies. The bankrupt companies were analyzed in the period 2000-2012, while the still operating companies were evaluated from 2007 to 2013. The dataset consists of 64 features that pertain to various financial ratios and performance metrics that encompass aspects such as profitability, liquidity, solvency, and operational efficiency of a company.
 
 ## Proposed solution
 The proposed solution involves employing a diverse array of predictive models, including logistic regression, k nearest neighbors and decision trees, each tailored to identify companies at risk of bankruptcy. To gauge effectiveness, logistic regression will serve as the benchmark classifier, ensuring a thorough evaluation of alternative models. We will also leverage ensemble methods including bagging, boosting and random forests to amplify our model's predictive capabilities, while enriching our understanding of machine learning techniques. Through this multifaceted strategy, our goal is to construct a predictive framework that surpasses traditional limitations, equipping stakeholders with nuanced insights to confidently traverse the unpredictable landscape of financial risk.
 
 ## Dataset Description
 Source: https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data
+
 Variable Description
 X1	net profit / total assets
 X2	total liabilities / total assets
