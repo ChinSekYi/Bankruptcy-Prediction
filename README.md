@@ -14,7 +14,7 @@ The proposed solution involves employing a diverse array of predictive models, i
 ## Dataset Description
 Source: https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data
 
-Variable Description
+Variable Description:
 X1	net profit / total assets
 X2	total liabilities / total assets
 X3	working capital / total assets
