@@ -80,7 +80,8 @@ X62	(short-term liabilities *365) / sales
 X63	sales / short-term liabilities
 X64	sales / fixed assets
 
-## Set up virtual environment 
+
+### Set up virtual environment 
 To ensure collaboraters have the same packages and versions installed. 
 
 Install anaconda: https://docs.anaconda.com/free/miniconda/index.html  
