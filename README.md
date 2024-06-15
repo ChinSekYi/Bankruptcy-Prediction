@@ -12,6 +12,8 @@ We will also use custom functions which will work well on our specific dataset. 
 The proposed solution involves employing a diverse array of predictive models, including logistic regression, k nearest neighbors and decision trees, each tailored to identify companies at risk of bankruptcy. To gauge effectiveness, logistic regression will serve as the benchmark classifier, ensuring a thorough evaluation of alternative models. We will also leverage ensemble methods including bagging, boosting and random forests to amplify our model's predictive capabilities, while enriching our understanding of machine learning techniques. Through this multifaceted strategy, our goal is to construct a predictive framework that surpasses traditional limitations, equipping stakeholders with nuanced insights to confidently traverse the unpredictable landscape of financial risk.
 
 ## Dataset Description
+
+
 Source: https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data
 
 Variable Description:
