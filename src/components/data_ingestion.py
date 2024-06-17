@@ -1,11 +1,15 @@
 import os
 import sys
 from dataclasses import dataclass
+from pathlib import Path
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
 
 from src.exception import CustomException
 from src.logger import logging
