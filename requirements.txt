@@ -13,4 +13,5 @@ tqdm
 ipykernel
 requests
 catboost
+dill
 -e .
