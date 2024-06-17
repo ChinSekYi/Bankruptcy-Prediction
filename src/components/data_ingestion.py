@@ -29,7 +29,9 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info("Entered the data ingestion method or component")
         try:
-            df = pd.read_csv("notebook/data/3year.csv") #change this to read from other database
+            df = pd.read_csv(
+                "notebook/data/3year.csv"
+            )  # change this to read from other database
             logging.info("Read the dataset as dataframe")
 
             os.makedirs(
@@ -45,7 +47,9 @@ class DataIngestion:
                 self.ingestion_config.train_data_path, index=False, header=True
             )
 
-            test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
+            test_set.to_csv(
+                self.ingestion_config.test_data_path, index=False, header=True
+            )
 
             logging.info("Ingestion of the data is completed")
 
