@@ -12,4 +12,5 @@ cufflinks
 tqdm
 ipykernel
 requests
+catboost
 -e .
