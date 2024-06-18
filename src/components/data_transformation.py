@@ -15,6 +15,7 @@ sys.path.append(str(project_root))
 
 from src.exception import CustomException
 from src.logger import logging
+from src.utils import save_object
 
 
 @dataclass
@@ -23,16 +24,17 @@ class DataTransformationConfig:
 
 
 class DataTransformation:
-    '''
+    """
     This function is responsible for data transformation
-    '''
+    """
+
     def __init__(self):
         self.data_transformation_config = DataTransformationConfig()
 
     def get_data_transformer_object(self):
         try:
-            numerical_columns = [i for i in range(0, 65)]
-            categorical_columns = [65]
+            numerical_columns = [i for i in range(0, 64)]
+            categorical_columns = [64]
             num_pipeline = Pipeline(
                 steps=[
                     ("imputer", SimpleImputer(strategy="median")),
@@ -62,46 +64,56 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e, sys)
-        
+
     def initiate_data_transformation(self, train_path, test_path):
 
         try:
-            train_df=pd.read_csv(train_path)
-            test_df=pd.read_csv(test_path)
+            train_df = pd.read_csv(train_path)
+            test_df = pd.read_csv(test_path)
 
             logging.info("Read train and test completed")
             logging.info("Obtaining preprocessing object")
 
-            preprocessing_obj=self.get_data_transformer_object()
+            preprocessing_obj = self.get_data_transformer_object()
 
-            numerical_columns = [i for i in range(0, 65)]
-            target_column_index = 65
+            numerical_columns = [i for i in range(0, 64)]
+            target_column_index = 64
 
-            input_feature_train_df=train_df.drop(train_df.columns[target_column_index], axis=1, inplace=True)
-            target_feature_train_df=train_df[target_column_index]
+            input_feature_train_df = train_df.drop(
+                train_df.columns[target_column_index], axis=1, inplace=False
+            )
+            target_feature_train_df = train_df.iloc[:, target_column_index]
 
-            input_feature_test_df=test_df.drop(train_df.columns[target_column_index], axis=1, inplace=True)
-            target_feature_test_df=test_df[target_column_index]
+            input_feature_test_df = test_df.drop(
+                train_df.columns[target_column_index], axis=1, inplace=False
+            )
+            target_feature_test_df = test_df.iloc[:, target_column_index]
 
-            logging.info("Applying preprocessing object on training dataframe and testing dataframe")
+            logging.info(
+                "Applying preprocessing object on training dataframe and testing dataframe"
+            )
 
-            input_feature_train_arr=preprocessing_obj.fit_transform(input_feature_train_df)
-            input_feature_test_arr=preprocessing_obj.transform(input_feature_test_df)
+            input_feature_train_arr = preprocessing_obj.fit_transform(
+                input_feature_train_df
+            )
+            input_feature_test_arr = preprocessing_obj.transform(input_feature_test_df)
 
-            train_arr = np.c_[input_feature_train_arr, np.array(target_feature_train_df)]
+            train_arr = np.c_[
+                input_feature_train_arr, np.array(target_feature_train_df)
+            ]
             test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
 
             logging.info("Saved preprocessing object")
 
             save_object(
-                file_path = self.data_transformation_config.preprocessor_ob_file_path,
-                obj=preprocessing_obj
+                file_path=self.data_transformation_config.preprocessor_ob_file_path,
+                obj=preprocessing_obj,
             )
 
-            return(
-                train_arr, 
+            return (
+                train_arr,
                 test_arr,
-                self.data_transformation_config.preprocessor_ob_file_path
+                self.data_transformation_config.preprocessor_ob_file_path,
             )
         except Exception as e:
             raise CustomException(e, sys)
