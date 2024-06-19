@@ -3,12 +3,21 @@ import sys
 from dataclasses import dataclass
 
 from catboost import CatBoostRegressor
-from sklearn.ensemble import (AdaBoostRegressor, GradientBoostingRegressor,
-                              RandomForestRegressor)
+from sklearn.ensemble import (
+    AdaBoostRegressor,
+    GradientBoostingRegressor,
+    RandomForestRegressor,
+)
 from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.metrics import (accuracy_score, classification_report,
-                             confusion_matrix, f1_score, precision_score,
-                             r2_score, recall_score)
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    confusion_matrix,
+    f1_score,
+    precision_score,
+    r2_score,
+    recall_score,
+)
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVC as SVM
 from sklearn.tree import DecisionTreeRegressor
@@ -67,7 +76,8 @@ class ModelTrainer:
             best_model = models[best_model_name]
 
             if best_model_score < 0.6:
-                raise CustomException("No best model found")
+                logging.error("No best model found")
+                raise CustomException(e, sys)
 
             logging.info(f"Best model on both training and testing dataset")
 
