@@ -328,7 +328,7 @@ class CustomData:
                     self.short_term_liabilities_365_sales
                 ],
                 "sales_short_term_liabilities": [self.sales_short_term_liabilities],
-                "sales_fixed_assets": [self.sales_fixed_assets]
+                "sales_fixed_assets": [self.sales_fixed_assets],
             }
 
             return pd.DataFrame(custom_data_input)
