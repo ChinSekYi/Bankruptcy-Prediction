@@ -5,13 +5,55 @@ from dataclasses import dataclass
 from catboost import CatBoostRegressor
 from sklearn.ensemble import (AdaBoostRegressor, GradientBoostingRegressor,
                               RandomForestRegressor)
-from sklearn.linear_model import LinearRegression
+
+from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.metrics import (accuracy_score, classification_report,
                              confusion_matrix, f1_score, precision_score,
                              r2_score, recall_score)
+
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.svm import SVC as SVM
 from xgboost import XGBRegressor
 
 from src.exception import CustomException
 from src.logger import logging
+
+from src.utils import save_object
+
+
+@dataclass
+class ModelTrainerConfig:
+    trained_model_file_path=os.path.join("artifacts", "model.pkl")
+
+class ModelTrainer:
+    def __init__(self):
+        self.model_trainer_config = ModelTrainerConfig()
+        
+    def initiate_model_trainer(self, train_array, test_array, preprocessor_path):
+        try:
+            logging.info("Splitting training and test input data")
+            X_train, y_train, X_test, y_test = (
+                train_array[:,:-1],
+                train_array[:,-1],
+                test_array[:,:-1],
+                test_array[:,-1]
+            )
+
+            models ={
+                "Linear Regression": LinearRegression(),
+                "Logistic Regression": LogisticRegression(),
+                "Random Forest": RandomForestRegressor(),
+                "Decision Tree": DecisionTreeRegressor(),
+                "KNN": KNeighborsRegressor(),
+                "SVM": SVM(),
+                "XGBClassifier": XGBRegressor(),
+                "CatBoosting Classifier": CatBoostRegressor(verbose=False),
+                "AdaBoosting Classifier": AdaBoostRegressor(),
+            }
+
+            model_report:dict=evaluate_model(X=X_train, y=y_train, x_test=X_test,y_test=y_test, models=models)
+
+
+        except Exception as e:
+            raise CustomException(e, sys)

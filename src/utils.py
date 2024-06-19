@@ -21,3 +21,6 @@ def save_object(file_path, obj):
 
     except Exception as e:
         raise CustomException(e, sys)
+
+def evaluate_model(X=X_train, y=y_train, x_test=X_test,y_test=y_test, models=models):
+    
