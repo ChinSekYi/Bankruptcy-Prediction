@@ -7,11 +7,23 @@
     <h1>Bankruptcy Prediction</h1>
     
     <form action="/predict" method="POST">
-        <label for="var1">Variable 1:</label>
-        <input type="text" id="var1" name="var1"><br><br>
+        <label for="net_profit_total_assets">Net Profit / Total Assets:</label>
+        <input type="text" id="net_profit_total_assets" name="net_profit_total_assets"><br><br>
         
-        <label for="var2">Variable 2:</label>
-        <input type="text" id="var2" name="var2"><br><br>
+        <label for="total_liabilities_total_assets">Total Liabilities / Total Assets:</label>
+        <input type="text" id="total_liabilities_total_assets" name="total_liabilities_total_assets"><br><br>
+        
+        <label for="working_capital_total_assets">Working Capital / Total Assets:</label>
+        <input type="text" id="working_capital_total_assets" name="working_capital_total_assets"><br><br>
+        
+        <label for="current_assets_short_term_liabilities">Current Assets / Short-term Liabilities:</label>
+        <input type="text" id="current_assets_short_term_liabilities" name="current_assets_short_term_liabilities"><br><br>
+        
+        <label for="cash_short_term_securities_receivables_short_term_liabilities_operating_expenses_depreciation_365">
+            [(Cash + Short-term Securities + Receivables - Short-term Liabilities) / (Operating Expenses - Depreciation)] * 365:
+        </label>
+        <input type="text" id="cash_short_term_securities_receivables_short_term_liabilities_operating_expenses_depreciation_365"
+               name="cash_short_term_securities_receivables_short_term_liabilities_operating_expenses_depreciation_365"><br><br>
         
         <!-- Add more input fields for other variables -->
         
@@ -19,6 +31,6 @@
     </form>
     
     <h2>Prediction Results</h2>
-    <p>The prediction is: {{ results }}</p>
+    <p>The prediction is: {{results}}</p>
 </body>
 </html>
