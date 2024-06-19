@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bankruptcy Prediction</title>
+</head>
+<body>
+    <h1>Bankruptcy Prediction</h1>
+    
+    <form action="/predict" method="POST">
+        <label for="var1">Variable 1:</label>
+        <input type="text" id="var1" name="var1"><br><br>
+        
+        <label for="var2">Variable 2:</label>
+        <input type="text" id="var2" name="var2"><br><br>
+        
+        <!-- Add more input fields for other variables -->
+        
+        <input type="submit" value="Predict">
+    </form>
+    
+    <h2>Prediction Results</h2>
+    <p>The prediction is: {{ results }}</p>
+</body>
+</html>
