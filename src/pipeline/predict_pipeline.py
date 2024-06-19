@@ -95,7 +95,6 @@ class CustomData:
         short_term_liabilities_365_sales: float,
         sales_short_term_liabilities: float,
         sales_fixed_assets: float,
-        class_value: float,
     ):
 
         self.net_profit_total_assets = net_profit_total_assets
@@ -198,7 +197,6 @@ class CustomData:
         self.short_term_liabilities_365_sales = short_term_liabilities_365_sales
         self.sales_short_term_liabilities = sales_short_term_liabilities
         self.sales_fixed_assets = sales_fixed_assets
-        self.class_value = class_value
 
     def get_data_as_dataframe(self):
         try:
@@ -330,8 +328,7 @@ class CustomData:
                     self.short_term_liabilities_365_sales
                 ],
                 "sales_short_term_liabilities": [self.sales_short_term_liabilities],
-                "sales_fixed_assets": [self.sales_fixed_assets],
-                "class_value": [self.class_value],
+                "sales_fixed_assets": [self.sales_fixed_assets]
             }
 
             return pd.DataFrame(custom_data_input)

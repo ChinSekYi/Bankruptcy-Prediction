@@ -6,7 +6,7 @@
 <body>
     <h1>Bankruptcy Prediction</h1>
     
-    <form action="/predict" method="POST">
+    <form action="/predictdata" method="POST">
         
         <label for="net_profit_total_assets">Net Profit / Total Assets:</label>
         <input type="text" id="net_profit_total_assets" name="net_profit_total_assets"><br><br>
@@ -236,11 +236,10 @@
         
         <label for="sales_fixed_assets">Sales / Fixed Assets:</label>
         <input type="text" id="sales_fixed_assets" name="sales_fixed_assets"><br><br>
-        
-        <label for="class">Class:</label>
-        <input type="text" id="class" name="class"><br><br>
-        
-        <input type="submit" value="Predict">
+
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict whether your company will become bankrupt in 3 years" required/>
+        </div>
     </form>
     
     <h2>Prediction Results</h2>

@@ -173,14 +173,13 @@ def predict_datapoint():
                 "sales_short_term_liabilities"
             ),
             sales_fixed_assets=request.form.get("sales_fixed_assets"),
-            class_value=request.form.get("class_value"),
         )
 
         pred_df = data.get_data_as_dataframe()
         print(pred_df)
 
         predict_pipeline = PredictPipeline()
-        results = predict_pipeline.predict(data=pred_df)
+        results = predict_pipeline.predict(pred_df)
         return render_template("home.html", results=results[0])
 
 
