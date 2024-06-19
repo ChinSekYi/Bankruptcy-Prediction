@@ -30,10 +30,13 @@ def evaluate_model(X_train, y_train, X_test, y_test, models, params):
 
         for i in range(len(list(models))):
             model = list(models.values())[i]
-            para = param[list(models.keys())[i]]
+            para = params[list(models.keys())[i]]
 
             gs = GridSearchCV(model, para, cv=3)
             gs.fit(X_train, y_train)
+
+            model.set_params(**gs.best_params_)
+            model.fit(X_train, y_train)
 
             y_train_pred = model.predict(X_train)
 
