@@ -75,6 +75,7 @@ class ModelTrainer:
                     "n_estimators": [8, 16, 32, 64, 128, 256],
                 },
                 "Linear Regression": {},
+                "Logistic Regression": {},
                 "XGBRegressor": {
                     "learning_rate": [0.1, 0.01, 0.05, 0.001],
                     "n_estimators": [8, 16, 32, 64, 128, 256],
