@@ -6,8 +6,10 @@ from datetime import datetime
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 from src.utils import load_object, save_object
 
+#TODO debug
 preprocessor = load_object(file_path=os.path.join("artifacts", "preprocessor.pkl"))
 print(preprocessor)
+
 data = CustomData(
     1,
     2,
