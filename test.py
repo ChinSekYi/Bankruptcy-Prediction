@@ -2,8 +2,9 @@ import logging
 import os
 import sys
 from datetime import datetime
-from src.utils import save_object, load_object
+
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
+from src.utils import load_object, save_object
 
 preprocessor = load_object(file_path=os.path.join("artifacts", "preprocessor.pkl"))
 print(preprocessor)
