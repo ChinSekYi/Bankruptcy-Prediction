@@ -119,6 +119,6 @@ cd Bankruptcy-Prediction
 python3 app.py
 ```
 
-Go to chrome and enter: 
+Go to chrome and enter:    
 0.0.0.0:5001 for home page  
 0.0.0.0:5001/predictdata for bankruptcy prediction page  
