@@ -81,6 +81,10 @@ class DataTransformation:
             numerical_columns = [i for i in range(0, 64)]
             target_column_index = 64
 
+            column_names = pd.read_csv("column_names.txt", header=None)
+            train_df.columns = list(column_names[0])
+            test_df.columns = list(column_names[0])
+
             input_feature_train_df = train_df.drop(
                 train_df.columns[target_column_index], axis=1, inplace=False
             )

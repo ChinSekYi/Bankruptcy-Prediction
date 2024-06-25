@@ -6,7 +6,7 @@ from datetime import datetime
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 from src.utils import load_object, save_object
 
-#TODO debug
+# TODO debug
 preprocessor = load_object(file_path=os.path.join("artifacts", "preprocessor.pkl"))
 print(preprocessor)
 
@@ -78,7 +78,15 @@ data = CustomData(
 )
 
 pred_df = data.get_data_as_dataframe()
+print(f"\033[1;31;40m pred_df  \033[0m 1;31;40m   ")
 print(pred_df)
 
 predict_pipeline = PredictPipeline()
-results = predict_pipeline.predict(pred_df)
+# results = predict_pipeline.predict(pred_df)
+
+model_path = os.path.join("artifacts", "model.pkl")
+preprocessor_path = os.path.join("artifacts", "preprocessor.pkl")
+model = load_object(file_path=model_path)
+preprocessor = load_object(file_path=preprocessor_path)
+data_scaled = preprocessor.transform(pred_df)
+preds = model.predict(data_scaled)
