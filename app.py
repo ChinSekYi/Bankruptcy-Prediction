@@ -179,8 +179,10 @@ def predict_datapoint():
         print(pred_df)
 
         predict_pipeline = PredictPipeline()
-        results = predict_pipeline.predict(pred_df)
-        return render_template("home.html", results=results[0])
+        pred_result, r2_score = predict_pipeline.predict(pred_df)
+        return render_template(
+            "home.html", pred_result=pred_result[0], r2_score=r2_score[0]
+        )
 
 
 if __name__ == "__main__":
