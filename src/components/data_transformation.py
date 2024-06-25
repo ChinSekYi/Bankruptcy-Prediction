@@ -34,7 +34,7 @@ class DataTransformation:
     def get_data_transformer_object(self):
         try:
             numerical_columns = [i for i in range(0, 64)]
-            categorical_columns = [64]
+            categorical_columns = 64
             num_pipeline = Pipeline(
                 steps=[
                     ("imputer", SimpleImputer(strategy="median")),
@@ -66,6 +66,7 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e, sys)
+
 
     def initiate_data_transformation(self, train_path, test_path):
 
@@ -121,5 +122,6 @@ class DataTransformation:
                 test_arr,
                 self.data_transformation_config.preprocessor_ob_file_path,
             )
+        
         except Exception as e:
             raise CustomException(e, sys)

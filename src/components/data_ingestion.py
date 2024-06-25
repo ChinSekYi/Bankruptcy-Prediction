@@ -3,7 +3,6 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-# import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -75,4 +74,4 @@ if __name__ == "__main__":
     )
 
     modeltrainer = ModelTrainer()
-    print(modeltrainer.initiate_model_trainer(train_arr, test_arr))
+    print(f"r2_score: {modeltrainer.initiate_model_trainer(train_arr, test_arr)}")
