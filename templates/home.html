@@ -70,7 +70,7 @@
         <input type="text" id="total_assets_total_liabilities" name="total_assets_total_liabilities" value="0.12"><br><br>
         
         <label for="gross_profit_total_assets">Gross Profit / Total Assets:</label>
-        <input type="text" id="gross_profit_total_assets" name="gross_profit_total_assets" value=""13.4><br><br>
+        <input type="text" id="gross_profit_total_assets" name="gross_profit_total_assets" value="13.4"><br><br>
         
         <label for="gross_profit_sales">Gross Profit / Sales:</label>
         <input type="text" id="gross_profit_sales" name="gross_profit_sales" value="0.23"><br><br>
@@ -106,7 +106,7 @@
         <input type="text" id="logarithm_total_assets" name="logarithm_total_assets" value="0.14"><br><br>
         
         <label for="total_liabilities_cash_sales">(Total Liabilities - Cash) / Sales:</label>
-        <input type="text" id="total_liabilities_cash_sales" name="total_liabilities_cash_sales" valuel="23.3"><br><br>
+        <input type="text" id="total_liabilities_cash_sales" name="total_liabilities_cash_sales" value="23.3"><br><br>
         
         <label for="gross_profit_interest_sales">Gross Profit + Interest / Sales:</label>
         <input type="text" id="gross_profit_interest_sales" name="gross_profit_interest_sales" value ="123.3"><br><br>
@@ -199,7 +199,7 @@
                name="short_term_liabilities_365_cost_of_products_sold" value="12.1"><br><br>
         
         <label for="equity_fixed_assets">Equity / Fixed Assets:</label>
-        <input type="text" id="equity_fixed_assets" name="equity_fixed_assets"><br><br>
+        <input type="text" id="equity_fixed_assets" name="equity_fixed_assets" value = "2"><br><br>
         
         <label for="constant_capital_fixed_assets">Constant Capital / Fixed Assets:</label>
         <input type="text" id="constant_capital_fixed_assets" name="constant_capital_fixed_assets" value="12"><br><br>
@@ -217,7 +217,7 @@
                name="current_assets_inventory_short_term_liabilities_sales_gross_profit_depreciation" value="0.09"><br><br>
         
         <label for="total_costs_total_sales">Total Costs / Total Sales:</label>
-        <input type="text" id="total_costs_total_sales" name="total_costs_total_sales"><br><br>
+        <input type="text" id="total_costs_total_sales" name="total_costs_total_sales" value="2"><br><br>
         
         <label for="long_term_liabilities_equity">Long-term Liabilities / Equity:</label>
         <input type="text" id="long_term_liabilities_equity" name="long_term_liabilities_equity" value="2"><br><br>
@@ -243,6 +243,8 @@
     </form>
     
     <h2>Prediction Results</h2>
-    <p>The prediction is: {{ results }}</p>
+    <p>The prediction is: {{ results[0] }}</p>
+
+    <p>r2 score is: {{ results[1] }}</p>
 </body>
 </html>

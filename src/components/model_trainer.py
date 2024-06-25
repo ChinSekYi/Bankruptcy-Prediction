@@ -121,7 +121,7 @@ class ModelTrainer:
 
             r2_score_value = r2_score(y_test, predicted)
 
-            return r2_score_value
+            return (predicted, r2_score_value)
 
         except Exception as e:
             raise CustomException(e, sys)
