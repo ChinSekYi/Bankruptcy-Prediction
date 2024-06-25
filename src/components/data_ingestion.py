@@ -74,4 +74,6 @@ if __name__ == "__main__":
     )
 
     modeltrainer = ModelTrainer()
-    print(f"r2_score: {modeltrainer.initiate_model_trainer(train_arr, test_arr)}")
+    pred_result, r2_score = modeltrainer.initiate_model_trainer(train_arr, test_arr)
+    print(f"Prediction result: {pred_result}")
+    print(f"r2 score: {r2_score}")
