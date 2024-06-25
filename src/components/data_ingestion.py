@@ -10,8 +10,10 @@ from sklearn.model_selection import train_test_split
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
 
-from src.components.data_transformation import (DataTransformation,
-                                                DataTransformationConfig)
+from src.components.data_transformation import (
+    DataTransformation,
+    DataTransformationConfig,
+)
 from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
 from src.exception import CustomException
 from src.logger import logging
