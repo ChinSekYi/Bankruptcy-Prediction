@@ -62,3 +62,9 @@ def load_object(file_path):
 
     except Exception as e:
         raise CustomException(e, sys)
+
+def print_bankruptcy_outcome(pred_result):
+    if pred_result >= 0.5:
+        print("Bad news! Company is predicted to be bankrupt in 3 years")
+    else:
+        print("Good news! Company is notpredicted to be bankrupt in 3 years")

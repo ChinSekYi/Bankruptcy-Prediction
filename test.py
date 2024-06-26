@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
-from src.utils import load_object, save_object
+from src.utils import load_object, save_object, print_bankruptcy_outcome
 
 # TODO debug
 preprocessor = load_object(file_path=os.path.join("artifacts", "preprocessor.pkl"))
@@ -92,7 +92,4 @@ data_scaled = preprocessor.transform(pred_df)
 pred_result = model.predict(data_scaled)
 
 print(f"Prediction result: {pred_result}")
-if pred_result >= 0.5:
-    print("Bad news! Company is predicted to be bankrupt in 3 years")
-else:
-    print("Good news! Company is notpredicted to be bankrupt in 3 years")
+print_bankruptcy_outcome(pred_result)

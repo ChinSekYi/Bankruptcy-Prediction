@@ -15,6 +15,7 @@ from src.components.data_transformation import (DataTransformation,
 from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
 from src.exception import CustomException
 from src.logger import logging
+from src.utils import print_bankruptcy_outcome
 
 
 @dataclass
@@ -75,10 +76,7 @@ if __name__ == "__main__":
 
     modeltrainer = ModelTrainer()
     pred_result, r2_score = modeltrainer.initiate_model_trainer(train_arr, test_arr)
+    
     print(f"Prediction result (0-1): {pred_result}")
-
-    if pred_result >= 0.5:
-        print("Bad news! Company is predicted to be bankrupt in 3 years")
-    else:
-        print("Good news! Company is notpredicted to be bankrupt in 3 years")
+    print_bankruptcy_outcome(pred_result)
     print(f"r2 score: {r2_score}")

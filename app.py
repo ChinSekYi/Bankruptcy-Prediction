@@ -4,6 +4,7 @@ from flask import Flask, render_template, request
 from sklearn.preprocessing import StandardScaler
 
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
+from src.utils import print_bankruptcy_outcome
 
 application = Flask(__name__)
 
@@ -180,7 +181,9 @@ def predict_datapoint():
 
         predict_pipeline = PredictPipeline()
         pred_result = predict_pipeline.predict(pred_df)
-        return render_template("home.html", pred_result=pred_result[0])
+        bankruptcy_outcome = print_bankruptcy_outcome(pred_result)
+
+        return render_template("home.html", pred_result=pred_result[0], bankruptcy_outcome=bankruptcy_outcome[0])
 
 
 if __name__ == "__main__":
