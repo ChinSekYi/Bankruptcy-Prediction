@@ -75,5 +75,10 @@ if __name__ == "__main__":
 
     modeltrainer = ModelTrainer()
     pred_result, r2_score = modeltrainer.initiate_model_trainer(train_arr, test_arr)
-    print(f"Prediction result: {pred_result}")
+    print(f"Prediction result (0-1): {pred_result}")
+
+    if pred_result >= 0.5:
+        print("Bad news! Company is predicted to be bankrupt in 3 years")
+    else:
+        print("Good news! Company is notpredicted to be bankrupt in 3 years")
     print(f"r2 score: {r2_score}")

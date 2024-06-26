@@ -89,10 +89,10 @@ preprocessor_path = os.path.join("artifacts", "preprocessor.pkl")
 model = load_object(file_path=model_path)
 preprocessor = load_object(file_path=preprocessor_path)
 data_scaled = preprocessor.transform(pred_df)
-pred_result, r2_score = model.predict(data_scaled)
+pred_result = model.predict(data_scaled)
 
 print(f"Prediction result: {pred_result}")
-print(f"r2 score: {r2_score}")
-
-##r = model.predict(data_scaled)
-# print(f"r:{r}")
+if pred_result >= 0.5:
+    print("Bad news! Company is predicted to be bankrupt in 3 years")
+else:
+    print("Good news! Company is notpredicted to be bankrupt in 3 years")
