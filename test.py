@@ -93,3 +93,6 @@ pred_result, r2_score= model.predict(data_scaled)
 
 print(f"Prediction result: {pred_result}")
 print(f"r2 score: {r2_score}")
+
+##r = model.predict(data_scaled)
+#print(f"r:{r}")
