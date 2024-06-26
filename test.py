@@ -4,7 +4,7 @@ import sys
 from datetime import datetime
 
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
-from src.utils import load_object, save_object, print_bankruptcy_outcome
+from src.utils import load_object, print_bankruptcy_outcome, save_object
 
 # TODO debug
 preprocessor = load_object(file_path=os.path.join("artifacts", "preprocessor.pkl"))
