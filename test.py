@@ -89,4 +89,7 @@ preprocessor_path = os.path.join("artifacts", "preprocessor.pkl")
 model = load_object(file_path=model_path)
 preprocessor = load_object(file_path=preprocessor_path)
 data_scaled = preprocessor.transform(pred_df)
-preds = model.predict(data_scaled)
+pred_result, r2_score= model.predict(data_scaled)
+
+print(f"Prediction result: {pred_result}")
+print(f"r2 score: {r2_score}")
