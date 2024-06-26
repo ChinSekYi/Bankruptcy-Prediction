@@ -65,6 +65,6 @@ def load_object(file_path):
 
 def print_bankruptcy_outcome(pred_result):
     if pred_result >= 0.5:
-        print("Bad news! Company is predicted to be bankrupt in 3 years")
+        return "Bad news! The company is predicted to be bankrupt within 3 years."
     else:
-        print("Good news! Company is notpredicted to be bankrupt in 3 years")
+        return "Good news! The company is predicted to continue operating successfully for the next 3 years."

@@ -183,7 +183,7 @@ def predict_datapoint():
         pred_result = predict_pipeline.predict(pred_df)
         bankruptcy_outcome = print_bankruptcy_outcome(pred_result)
 
-        return render_template("home.html", pred_result=pred_result[0], bankruptcy_outcome=bankruptcy_outcome[0])
+        return render_template("home.html", pred_result=pred_result[0], bankruptcy_outcome=bankruptcy_outcome)
 
 
 if __name__ == "__main__":

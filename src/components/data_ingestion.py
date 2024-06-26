@@ -76,7 +76,7 @@ if __name__ == "__main__":
 
     modeltrainer = ModelTrainer()
     pred_result, r2_score = modeltrainer.initiate_model_trainer(train_arr, test_arr)
-    
+
     print(f"Prediction result (0-1): {pred_result}")
-    print_bankruptcy_outcome(pred_result)
+    print(print_bankruptcy_outcome(pred_result))
     print(f"r2 score: {r2_score}")

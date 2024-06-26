@@ -243,7 +243,10 @@
     </form>
     
     <h2>Prediction Results</h2>
-    <p>The prediction is: {{ pred_result }}</p>
+    <p>The prediction is (0-1): <b><u>{{ pred_result }}</u></b></p>
+    <p><i>The closer the prediction is to 1, the more likely the company is to be bankrupt within 3 years.</i></p>
+
+    <p><b><u>{{ bankruptcy_outcome}}</u></b></p>
 
 </body>
 </html>

@@ -92,4 +92,4 @@ data_scaled = preprocessor.transform(pred_df)
 pred_result = model.predict(data_scaled)
 
 print(f"Prediction result: {pred_result}")
-print_bankruptcy_outcome(pred_result)
+print(print_bankruptcy_outcome(pred_result))
