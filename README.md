@@ -1,6 +1,10 @@
 # Predict Company Bankruptcy using Machine Learning
 
-![Model Diagram](images/Homepage.png)
+<p align="center">
+  <img src="images/Homepage.png" alt="Model Diagram 1" width="30%">
+  <img src="images/PredictionPageTop.png" alt="Model Diagram 2" width="30%">
+  <img src="images/PredictionPageBottom.png" alt="Model Diagram 3" width="30%">
+</p>
 
 ## Project Motivation
 In today's dynamic business environment, anticipating financial risks is crucial. This project aims to develop a predictive model for company bankruptcy using advanced machine learning algorithms and financial data analysis. By identifying early signs of financial distress, stakeholders can make informed decisions to prevent bankruptcy, minimizing financial losses.
@@ -66,8 +70,8 @@ python3 app.py
 
 ### Access Application
 Then, click on one of the links below 
-- Home page: http://0.0.0.0:5001
-- Prediction page: http://0.0.0.0:5001/predictdata
+- [Home page](http://0.0.0.0:5001)
+- [Prediction page](http://0.0.0.0:5001/predictdata)
 
 ### Access WebApp deployed through Microsoft Azure (**Not active for now to avoid billing**)  
 - Home Page: https://bankruptcy-prediction.azurewebsites.net/  
