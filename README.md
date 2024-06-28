@@ -1,9 +1,9 @@
 # Predict Company Bankruptcy using Machine Learning
 
 <p align="center">
-  <img src="images/Homepage.png" alt="Model Diagram 1" width="300" height="200">
-  <img src="images/PredictionPageTop.png" alt="Model Diagram 2" width="300" height="200">
-  <img src="images/PredictionPageBottom.png" alt="Model Diagram 3" width="300" height="200">
+  <img src="images/Homepage.png" alt="Model Diagram 1" width="280" height="200">
+  <img src="images/PredictionPageTop.png" alt="Model Diagram 2" width="280" height="200">
+  <img src="images/PredictionPageBottom.png" alt="Model Diagram 3" width="280" height="200">
 </p>>
 
 ## Project Motivation
