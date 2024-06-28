@@ -22,7 +22,7 @@ Features Include:
 - And many more financial ratios and metrics.
 
 <br>
----
+
    
 ## Setup virtual environment for Developers
 To ensure consistent package versions among collaborators.
@@ -54,7 +54,7 @@ git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
 cd Bankruptcy-Prediction
 ```
 <br>
----
+
     
 ## Accessing the WebApp
 ### Run Flask app using CLI
