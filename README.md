@@ -113,7 +113,7 @@ git commit -m "Merge branchname branch into main"
 git push origin main
 ```
 
-### Run Flask app
+### Run Flask app using CLI
 ```
 cd Bankruptcy-Prediction
 python3 app.py
@@ -122,3 +122,8 @@ python3 app.py
 Go to chrome and enter:    
 0.0.0.0:5001 for home page  
 0.0.0.0:5001/predictdata for bankruptcy prediction page  
+
+### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)  
+homepage: https://bankruptcy-prediction.azurewebsites.net/  
+prediction page: https://bankruptcy-prediction.azurewebsites.net/predictdata  
+ 
