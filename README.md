@@ -1,15 +1,15 @@
 # Predict Company Bankruptcy using Machine Learning
 
 
-## Project motivation
-In today's dynamic business landscape, exemplified by recent events such as the bankruptcy of Silicon Valley Bank, the ability to anticipate and mitigate financial risks is crucial for sustainable growth and stability. This project aims to develop a robust predictive model of company bankruptcy, leveraging advanced machine learning algorithms and financial data analysis techniques. By accurately identifying early warning signs of financial distress, this model will empower stakeholders to make informed decisions and implement timely interventions to prevent bankruptcy. This model will also help investors to mitigate financial risks, minimizing their loss. 
+## Project Motivation
+In today's dynamic business environment, anticipating financial risks is crucial. This project aims to develop a predictive model for company bankruptcy using advanced machine learning algorithms and financial data analysis. By identifying early signs of financial distress, stakeholders can make informed decisions to prevent bankruptcy, minimizing financial losses.
 
 ## Description
-Our project will explore and compare the usage of different machine learning models to predict company bankruptcy. We will evaluate the different models using various metrics, and improve its accuracy for better model performance. 
-We will also use custom functions which will work well on our specific dataset. The dataset is about bankruptcy prediction of Polish companies. The bankrupt companies were analyzed in the period 2000-2012, while the still operating companies were evaluated from 2007 to 2013. The dataset consists of 64 features that pertain to various financial ratios and performance metrics that encompass aspects such as profitability, liquidity, solvency, and operational efficiency of a company.
+We explore various machine learning models to predict company bankruptcy, focusing on improving accuracy. The dataset, from Polish companies, spans 2000-2013 and includes 64 features related to profitability, liquidity, solvency, and operational efficiency.
+Our project will explore and compare the usage of different machine learning models to predict company bankruptcy. We will evaluate the different models using various metrics, and improve their accuracy for better model performance. 
 
 ## Proposed solution
-The proposed solution involves employing a diverse array of predictive models, including logistic regression, k nearest neighbors and decision trees, each tailored to identify companies at risk of bankruptcy. To gauge effectiveness, logistic regression will serve as the benchmark classifier, ensuring a thorough evaluation of alternative models. We will also leverage ensemble methods including bagging, boosting and random forests to amplify our model's predictive capabilities, while enriching our understanding of machine learning techniques. Through this multifaceted strategy, our goal is to construct a predictive framework that surpasses traditional limitations, equipping stakeholders with nuanced insights to confidently traverse the unpredictable landscape of financial risk.
+We employ multiple predictive models, including logistic regression, k-nearest neighbors, and decision trees, with logistic regression as the benchmark. Ensemble methods like bagging, boosting, and random forests will enhance predictive capabilities, providing a comprehensive understanding of financial risk.
 
 ## Dataset Description
 Source: https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data
@@ -81,36 +81,24 @@ X63	sales / short-term liabilities
 X64	sales / fixed assets
 
 
-### Set up virtual environment 
-To ensure collaboraters have the same packages and versions installed. 
+## Setup virtual environment 
+Ensure consistent package versions among collaborators.
 
-Install anaconda: https://docs.anaconda.com/free/miniconda/index.html  
-For windows installation guide: https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html  
+### Install Anaconda:
+Miniconda Installation Guide: https://docs.anaconda.com/free/miniconda/index.html  
+Windows Installation Guide: https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html  
 
-To check if conda is installed
+### Verify Conda Installation
 ```
 cd /your directory/..
 conda --version
 ```
 
-Create conda virtual environment
+### Create conda virtual environment
 ```
-conda create -n dev python=3.11 numpy pandas scikit-learn imbalanced-learn matplotlib seaborn scipy black isort plotly tqdm
-
+conda create -n dev python=3.11 
 conda activate dev
-```
-
-Work on individual branch 
-```
-git checkout -b branchname
-```
-
-To merge individual branch to main branch
-```
-git checkout main
-git merge branchname
-git commit -m "Merge branchname branch into main"
-git push origin main
+pip install -r requirements.txt
 ```
 
 ### Run Flask app using CLI
@@ -119,11 +107,11 @@ cd Bankruptcy-Prediction
 python3 app.py
 ```
 
-Go to chrome and enter:    
-0.0.0.0:5001 for home page  
-0.0.0.0:5001/predictdata for bankruptcy prediction page  
+#### Access Application
+- Home page: http://0.0.0.0:5001
+- Prediction page: http://0.0.0.0:5001/predictdata
 
-### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)  
-homepage: https://bankruptcy-prediction.azurewebsites.net/  
-prediction page: https://bankruptcy-prediction.azurewebsites.net/predictdata  
+## Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)  
+- Home Page: https://bankruptcy-prediction.azurewebsites.net/  
+- Prediction Page: https://bankruptcy-prediction.azurewebsites.net/predictdata  
  
