@@ -1,10 +1,10 @@
 # Predict Company Bankruptcy using Machine Learning
 
 <p align="center">
-  <img src="images/Homepage.png" alt="Model Diagram 1" width="33%">
-  <img src="images/PredictionPageTop.png" alt="Model Diagram 2" width="33%">
-  <img src="images/PredictionPageBottom.png" alt="Model Diagram 3" width="33%">
-</p>
+  <img src="images/Homepage.png" alt="Model Diagram 1" width="300" height="200">
+  <img src="images/PredictionPageTop.png" alt="Model Diagram 2" width="300" height="200">
+  <img src="images/PredictionPageBottom.png" alt="Model Diagram 3" width="300" height="200">
+</p>>
 
 ## Project Motivation
 In today's dynamic business environment, anticipating financial risks is crucial. This project aims to develop a predictive model for company bankruptcy using advanced machine learning algorithms and financial data analysis. By identifying early signs of financial distress, stakeholders can make informed decisions to prevent bankruptcy, minimizing financial losses.
