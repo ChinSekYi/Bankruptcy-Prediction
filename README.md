@@ -20,6 +20,7 @@ Features Include:
 - Working capital / total assets
 - Current assets / short-term liabilities
 - And many more financial ratios and metrics.
+
    
 ---
    
@@ -52,6 +53,7 @@ Ensure you have Git installed, then clone the project repository:
 git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
 cd Bankruptcy-Prediction
 ```
+
    
 ---
     
@@ -67,7 +69,7 @@ Then, click on one of the links below
 - Home page: http://0.0.0.0:5001
 - Prediction page: http://0.0.0.0:5001/predictdata
 
-### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)  
+### Access WebApp deployed through Microsoft Azure (**Not active for now to avoid billing**)  
 - Home Page: https://bankruptcy-prediction.azurewebsites.net/  
 - Prediction Page: https://bankruptcy-prediction.azurewebsites.net/predictdata  
  
