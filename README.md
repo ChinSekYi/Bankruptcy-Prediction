@@ -17,7 +17,7 @@ Our project will explore and compare the usage of different machine learning mod
 We employ multiple predictive models, including logistic regression, k-nearest neighbors, and decision trees, with logistic regression as the benchmark. Ensemble methods like bagging, boosting, and random forests will enhance predictive capabilities, providing a comprehensive understanding of financial risk.
 
 ## Dataset Description
-**Source:** [Polish Companies Bankruptcy Data](https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data)
+**Source:** <a href="https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data" target="_blank">Polish Companies Bankruptcy Data</a>
 
 Features Include:
 - Net profit / total assets
@@ -33,8 +33,8 @@ Features Include:
 To ensure consistent package versions among collaborators.
 
 ### Install Anaconda:
-- [Miniconda Installation Guide](https://docs.anaconda.com/free/miniconda/index.html)
-- [Windows Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html)
+- <a href="https://docs.anaconda.com/free/miniconda/index.html" target="_blank">Miniconda Installation Guide</a>
+- <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html" target="_blank">Windows Installation Guide</a>
 
 ### Verify Conda Installation
 ```
@@ -70,10 +70,10 @@ python3 app.py
 
 ### Access Application
 Then, click on one of the links below 
-- [Home page](http://0.0.0.0:5001)
-- [Prediction page](http://0.0.0.0:5001/predictdata)
+- <a href="http://0.0.0.0:5001" target="_blank">Home page</a>
+- <a href="http://0.0.0.0:5001/predictdata" target="_blank">Prediction page</a>
 
 ### Access WebApp deployed through Microsoft Azure (**Not active for now to avoid billing**)  
-- Home Page: https://bankruptcy-prediction.azurewebsites.net/  
-- Prediction Page: https://bankruptcy-prediction.azurewebsites.net/predictdata  
+- Home Page: <a href="https://bankruptcy-prediction.azurewebsites.net/" target="_blank">https://bankruptcy-prediction.azurewebsites.net/</a>
+- Prediction Page: <a href="https://bankruptcy-prediction.azurewebsites.net/predictdata" target="_blank">https://bankruptcy-prediction.azurewebsites.net/predictdata</a>
  
