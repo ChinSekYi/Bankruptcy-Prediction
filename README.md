@@ -1,5 +1,6 @@
 # Predict Company Bankruptcy using Machine Learning
 
+![Model Diagram](images/Homepage.png)
 
 ## Project Motivation
 In today's dynamic business environment, anticipating financial risks is crucial. This project aims to develop a predictive model for company bankruptcy using advanced machine learning algorithms and financial data analysis. By identifying early signs of financial distress, stakeholders can make informed decisions to prevent bankruptcy, minimizing financial losses.
@@ -12,7 +13,7 @@ Our project will explore and compare the usage of different machine learning mod
 We employ multiple predictive models, including logistic regression, k-nearest neighbors, and decision trees, with logistic regression as the benchmark. Ensemble methods like bagging, boosting, and random forests will enhance predictive capabilities, providing a comprehensive understanding of financial risk.
 
 ## Dataset Description
-Source: https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data
+**Source:** [Polish Companies Bankruptcy Data](https://archive.ics.uci.edu/dataset/365/polish+companies+bankruptcy+data)
 
 Features Include:
 - Net profit / total assets
@@ -28,8 +29,8 @@ Features Include:
 To ensure consistent package versions among collaborators.
 
 ### Install Anaconda:
-Miniconda Installation Guide: https://docs.anaconda.com/free/miniconda/index.html  
-Windows Installation Guide: https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html  
+- [Miniconda Installation Guide](https://docs.anaconda.com/free/miniconda/index.html)
+- [Windows Installation Guide](https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html)
 
 ### Verify Conda Installation
 ```
