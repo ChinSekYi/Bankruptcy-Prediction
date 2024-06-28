@@ -20,10 +20,10 @@ Features Include:
 - Working capital / total assets
 - Current assets / short-term liabilities
 - And many more financial ratios and metrics.
-  
+   
 ---
-
-# Setup virtual environment for Developers
+   
+## Setup virtual environment for Developers
 To ensure consistent package versions among collaborators.
 
 ### Install Anaconda:
@@ -32,7 +32,6 @@ Windows Installation Guide: https://docs.conda.io/projects/conda/en/latest/user-
 
 ### Verify Conda Installation
 ```
-cd /your directory/..
 conda --version
 ```
 
@@ -40,11 +39,22 @@ conda --version
 ```
 conda create -n dev python=3.11 
 conda activate dev
+```
+
+### Install Project Dependencies   
+```
 pip install -r requirements.txt
 ```
 
+### Clone the Repository
+Ensure you have Git installed, then clone the project repository:
+```
+git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
+cd Bankruptcy-Prediction
+```
+   
 ---
-
+    
 ## Accessing the WebApp
 ### Run Flask app using CLI
 ```
@@ -52,11 +62,12 @@ cd Bankruptcy-Prediction
 python3 app.py
 ```
 
-#### Access Application
+### Access Application
+Then, click on one of the links below 
 - Home page: http://0.0.0.0:5001
 - Prediction page: http://0.0.0.0:5001/predictdata
 
-## Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)  
+### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)  
 - Home Page: https://bankruptcy-prediction.azurewebsites.net/  
 - Prediction Page: https://bankruptcy-prediction.azurewebsites.net/predictdata  
  
