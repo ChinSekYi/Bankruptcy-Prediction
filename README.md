@@ -21,7 +21,7 @@ Features Include:
 - Current assets / short-term liabilities
 - And many more financial ratios and metrics.
 
-   
+<br>
 ---
    
 ## Setup virtual environment for Developers
@@ -53,8 +53,7 @@ Ensure you have Git installed, then clone the project repository:
 git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
 cd Bankruptcy-Prediction
 ```
-
-   
+<br>
 ---
     
 ## Accessing the WebApp
