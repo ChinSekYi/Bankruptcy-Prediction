@@ -16,4 +16,6 @@ catboost
 dill
 xgboost
 Flask
+pytest
+pylint
 -e .
