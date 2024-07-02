@@ -1,21 +1,22 @@
 numpy
 pandas
+scipy
 scikit-learn
 imbalanced-learn
+catboost
+xgboost
 matplotlib
 seaborn
-scipy
-black
-isort
 plotly
 cufflinks
+black
+isort
+pylint
+pytest
+nbval
+Flask
 tqdm
 ipykernel
 requests
-catboost
 dill
-xgboost
-Flask
-pytest
-pylint
--e .
+#-e .
