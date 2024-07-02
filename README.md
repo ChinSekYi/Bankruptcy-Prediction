@@ -69,8 +69,7 @@ cd Bankruptcy-Prediction
 python3 app.py
 ```
 
-### Access Application
-Then, click on one of the links below:  
+Then, access the application by clicking on one of the links below:  
 - <a href="http://0.0.0.0:5001" target="_blank">Home page</a>
 - <a href="http://0.0.0.0:5001/predictdata" target="_blank">Prediction page</a>
 
