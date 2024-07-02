@@ -1,3 +1,4 @@
+[![Python application test with Github Actions](https://github.com/ChinSekYi/Bankruptcy-Prediction/actions/workflows/main.yml/badge.svg)](https://github.com/ChinSekYi/Bankruptcy-Prediction/actions/workflows/main.yml)
 # Predict Company Bankruptcy using Machine Learning
 
 <div style="display: flex; justify-content: center;">
@@ -73,7 +74,7 @@ Then, click on one of the links below:
 - <a href="http://0.0.0.0:5001" target="_blank">Home page</a>
 - <a href="http://0.0.0.0:5001/predictdata" target="_blank">Prediction page</a>
 
-### Access WebApp deployed through Microsoft Azure `(Not active for now to avoid billing)`
+### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)
 - Home Page: <a href="https://bankruptcy-prediction.azurewebsites.net/" target="_blank">https://bankruptcy-prediction.azurewebsites.net/</a>
 - Prediction Page: <a href="https://bankruptcy-prediction.azurewebsites.net/predictdata" target="_blank">https://bankruptcy-prediction.azurewebsites.net/predictdata</a>
  
