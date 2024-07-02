@@ -69,12 +69,11 @@ cd Bankruptcy-Prediction
 python3 app.py
 ```
 
-### Access Application
-Then, click on one of the links below:  
+Then, access the application by clicking on one of the links below:  
 - <a href="http://0.0.0.0:5001" target="_blank">Home page</a>
 - <a href="http://0.0.0.0:5001/predictdata" target="_blank">Prediction page</a>
 
 ### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)
-- Home Page: <a href="https://bankruptcy-prediction.azurewebsites.net/" target="_blank">https://bankruptcy-prediction.azurewebsites.net/</a>
-- Prediction Page: <a href="https://bankruptcy-prediction.azurewebsites.net/predictdata" target="_blank">https://bankruptcy-prediction.azurewebsites.net/predictdata</a>
+- <a href="https://bankruptcy-prediction.azurewebsites.net/" target="_blank">Home page</a>
+- <a href="https://bankruptcy-prediction.azurewebsites.net/predictdata" target="_blank">Prediction page</a>
  
