@@ -30,7 +30,7 @@ def save_object(file_path, obj):
         raise CustomException(e, sys) from e
 
 
-def evaluate_model(x_train, y_train, X_test, y_test, models, params):
+def evaluate_model(x_train, y_train, x_test, y_test, models, params):
     """
     Evaluate multiple models using GridSearchCV and return their R-squared scores.
 
@@ -61,9 +61,9 @@ def evaluate_model(x_train, y_train, X_test, y_test, models, params):
 
             y_train_pred = model.predict(x_train)
 
-            y_test_pred = model.predict(X_test)
+            y_test_pred = model.predict(x_test)
 
-            train_model_score = r2_score(y_train, y_train_pred)
+            # train_model_score = r2_score(y_train, y_train_pred)
 
             test_model_score = r2_score(y_test, y_test_pred)
 
@@ -88,6 +88,5 @@ def load_object(file_path):
 def print_bankruptcy_outcome(pred_result):
     if pred_result >= 0.5:
         return "Bad news! The company is predicted to be bankrupt within 3 years."
-    else:
-        return ("Good news! The company is "
-                "predicted to continue operating successfully for the next 3 years.")
+    return ("Good news! The company is "
+            "predicted to continue operating successfully for the next 3 years.")
