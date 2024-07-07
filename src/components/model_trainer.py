@@ -1,13 +1,15 @@
+"""
+Module for training various machine learning models and evaluating their performance.
+"""
+
 import os
 import sys
 from dataclasses import dataclass
 
-from sklearn.ensemble import (AdaBoostRegressor, GradientBoostingRegressor,
+from sklearn.ensemble import (AdaBoostRegressor,
                               RandomForestRegressor)
 from sklearn.linear_model import LinearRegression, LogisticRegression
-from sklearn.metrics import (accuracy_score, classification_report,
-                             confusion_matrix, f1_score, precision_score,
-                             r2_score, recall_score)
+from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.svm import SVC as SVM
 from sklearn.tree import DecisionTreeRegressor
@@ -20,17 +22,54 @@ from src.utils import evaluate_model, save_object
 
 @dataclass
 class ModelTrainerConfig:
+    """
+    Configuration class for model training operations.
+
+    Attributes:
+    - trained_model_file_path (str): File path to save the trained model.
+    """
     trained_model_file_path = os.path.join("artifacts", "model.pkl")
 
 
 class ModelTrainer:
+    """
+    ModelTrainer class handles training of various machine learning models and evaluation of their performance.
+
+    Methods:
+    - __init__(): Initializes a ModelTrainer instance with default configuration.
+    - initiate_model_trainer(train_array, test_array): Initiates model training, evaluates model performance, and saves the best model.
+
+    """
     def __init__(self):
+        """
+        Initializes a ModelTrainer instance with default configuration.
+
+        Usage:
+        >>> trainer = ModelTrainer()
+        """
         self.model_trainer_config = ModelTrainerConfig()
 
     def initiate_model_trainer(self, train_array, test_array):
+        """
+        Initiates model training, evaluation, and saves the best performing model.
+
+        Args:
+        - train_array (numpy.ndarray): Array containing training data.
+        - test_array (numpy.ndarray): Array containing testing data.
+
+        Returns:
+        - Tuple: Predicted values and R-squared score of the best performing model.
+
+        Raises:
+        - CustomException: If an error occurs during model training or evaluation.
+
+        Usage:
+        >>> trainer = ModelTrainer()
+        >>> predicted_values, r2_score = trainer.initiate_model_trainer(train_array, test_array)
+        """
         try:
             logging.info("Splitting training and test input data")
-            X_train, y_train, X_test, y_test = (
+            x_train, y_train, X_test, y_test = (
                 train_array[:, :-1],
                 train_array[:, -1],
                 test_array[:, :-1],
@@ -78,7 +117,7 @@ class ModelTrainer:
             }
 
             model_report: dict = evaluate_model(
-                X_train=X_train,
+                x_train=x_train,
                 y_train=y_train,
                 X_test=X_test,
                 y_test=y_test,
@@ -117,4 +156,4 @@ class ModelTrainer:
             return (predicted, r2_score_value)
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
