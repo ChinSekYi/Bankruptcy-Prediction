@@ -1,3 +1,11 @@
+"""
+predict_pipeline.py
+
+This module implements the prediction pipeline for financial data analysis.
+It includes preprocessing, model training, evaluation, and prediction functions.
+
+"""
+
 import os
 import sys
 
@@ -8,6 +16,9 @@ from src.utils import load_object
 
 
 class PredictPipeline:
+    """
+    Implements a pipeline for predicting financial metrics using various models.
+    """
     def __init__(self):
         pass
 
@@ -97,7 +108,9 @@ class CustomData:
         sales_short_term_liabilities: float,
         sales_fixed_assets: float,
     ):
-
+        """
+        Initialize CustomData with the provided financial metrics.
+        """
         self.net_profit_total_assets = net_profit_total_assets
         self.total_liabilities_total_assets = total_liabilities_total_assets
         self.working_capital_total_assets = working_capital_total_assets
@@ -200,6 +213,12 @@ class CustomData:
         self.sales_fixed_assets = sales_fixed_assets
 
     def get_data_as_dataframe(self):
+        """
+        Converts the attributes of CustomData into a pandas DataFrame.
+
+        Returns:
+            pd.DataFrame: A DataFrame where each row represents a financial metric attribute.
+        """
         try:
             custom_data_input = {
                 "net profit / total assets": [self.net_profit_total_assets],
@@ -343,4 +362,4 @@ class CustomData:
             return pd.DataFrame(custom_data_input)
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
