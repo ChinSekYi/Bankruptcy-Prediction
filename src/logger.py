@@ -1,3 +1,9 @@
+"""
+Logging Configuration Module
+
+Sets up logging for the application with a timestamped log file in the 'logs' directory.
+"""
+
 import logging
 import os
 from datetime import datetime

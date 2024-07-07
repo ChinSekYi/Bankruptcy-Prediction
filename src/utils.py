@@ -12,6 +12,13 @@ from src.exception import CustomException
 
 
 def save_object(file_path, obj):
+    """
+    Save an object to a file using pickle.
+
+    Args:
+        file_path (str): Path to the file where the object will be saved.
+        obj (object): Object to be saved.
+    """
     try:
         dir_path = os.path.dirname(file_path)
         os.makedirs(dir_path, exist_ok=True)
@@ -20,10 +27,24 @@ def save_object(file_path, obj):
             pickle.dump(obj, file_obj)
 
     except Exception as e:
-        raise CustomException(e, sys)
+        raise CustomException(e, sys) from e
 
 
-def evaluate_model(X_train, y_train, X_test, y_test, models, params):
+def evaluate_model(x_train, y_train, X_test, y_test, models, params):
+    """
+    Evaluate multiple models using GridSearchCV and return their R-squared scores.
+
+    Args:
+        x_train (array-like): Training input samples.
+        y_train (array-like): Target values for training.
+        x_test (array-like): Test input samples.
+        y_test (array-like): Target values for testing.
+        models (dict): Dictionary of models to evaluate.
+        params (dict): Dictionary of parameter grids for GridSearchCV.
+
+    Returns:
+        dict: Dictionary containing model names as keys and their R-squared scores as values.
+    """
     try:
 
         report = {}
@@ -33,12 +54,12 @@ def evaluate_model(X_train, y_train, X_test, y_test, models, params):
             para = params[list(models.keys())[i]]
 
             gs = GridSearchCV(model, para, cv=3)
-            gs.fit(X_train, y_train)
+            gs.fit(x_train, y_train)
 
             model.set_params(**gs.best_params_)
-            model.fit(X_train, y_train)
+            model.fit(x_train, y_train)
 
-            y_train_pred = model.predict(X_train)
+            y_train_pred = model.predict(x_train)
 
             y_test_pred = model.predict(X_test)
 
@@ -51,7 +72,7 @@ def evaluate_model(X_train, y_train, X_test, y_test, models, params):
         return report
 
     except Exception as e:
-        raise CustomException(e, sys)
+        raise CustomException(e, sys) from e
 
 
 def load_object(file_path):
@@ -68,4 +89,5 @@ def print_bankruptcy_outcome(pred_result):
     if pred_result >= 0.5:
         return "Bad news! The company is predicted to be bankrupt within 3 years."
     else:
-        return "Good news! The company is predicted to continue operating successfully for the next 3 years."
+        return ("Good news! The company is "
+                "predicted to continue operating successfully for the next 3 years.")
