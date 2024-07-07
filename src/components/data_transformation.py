@@ -1,3 +1,8 @@
+"""
+Module for data transformation operations including preprocessing and saving the 
+preprocessor object.
+"""
+
 import os
 import sys
 from dataclasses import dataclass
@@ -10,30 +15,60 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 
-project_root = Path(__file__).resolve().parents[2]
-sys.path.append(str(project_root))
-
+# Custom imports
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
 
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+
 
 @dataclass
 class DataTransformationConfig:
+    """
+    Configuration class for data transformation operations.
+
+    Attributes:
+    - preprocessor_ob_file_path (str): File path to save the preprocessor object.
+    """
     preprocessor_ob_file_path = os.path.join("artifacts", "preprocessor.pkl")
 
 
 class DataTransformation:
     """
-    This function is responsible for data transformation
-    """
+    DataTransformation class handles data preprocessing and transformation operations.
 
+    Methods:
+    - __init__(): Initializes a DataTransformation instance with default configuration.
+    - get_data_transformer_object(): Returns the preprocessing object.
+    - initiate_data_transformation(train_path, test_path): Initiates data transformation,
+      performs preprocessing on train and test datasets, and saves the preprocessor object.
+    """
     def __init__(self):
+        """
+        Initializes a DataTransformation instance with default configuration.
+
+        """
         self.data_transformation_config = DataTransformationConfig()
 
     def get_data_transformer_object(self):
+        """
+        Returns the preprocessing object.
+
+        Returns:
+        - ColumnTransformer: Preprocessing object for numerical features.
+
+        Raises:
+        - CustomException: If an error occurs during object creation.
+
+        Usage:
+        >>> transformer = DataTransformation()
+        >>> preprocessor = transformer.get_data_transformer_object()
+        """
         try:
-            numerical_columns = [i for i in range(0, 64)]
+            numerical_columns = list(range(0, 64))
             categorical_columns = 64
             num_pipeline = Pipeline(
                 steps=[
@@ -42,12 +77,6 @@ class DataTransformation:
                 ]
             )
 
-            """
-            cat_pipeline = Pipeline(
-                steps=[]
-                ]
-            )
-            """
             logging.info(f"Categorical columns: {categorical_columns}")
             logging.info(f"Numerical columns: {numerical_columns}")
 
@@ -66,10 +95,29 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e, sys) from e
-        
+
 
     def initiate_data_transformation(self, train_path, test_path):
+        """
+        Initiates the data transformation process.
 
+        Reads train and test datasets, applies preprocessing, and saves the preprocessor object.
+
+        Args:
+        - train_path (str): File path to the training dataset.
+        - test_path (str): File path to the testing dataset.
+
+        Returns:
+        - Tuple: Transformed train and test datasets and the file path of the preprocessor object.
+
+        Raises:
+        - CustomException: If an error occurs during data transformation.
+
+        Usage:
+        >>> transformer = DataTransformation()
+        >>> train_data, test_data, preprocessor_path = 
+        transformer.initiate_data_transformation(train_path, test_path)
+        """
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
@@ -79,7 +127,7 @@ class DataTransformation:
 
             preprocessing_obj = self.get_data_transformer_object()
 
-            numerical_columns = [i for i in range(0, 64)]
+            # numerical_columns = list(range(0, 64))
             target_column_index = 64
 
             column_names = pd.read_csv("src/components/column_names.txt", header=None)
