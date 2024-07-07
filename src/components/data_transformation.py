@@ -8,7 +8,7 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler, OneHotEncoder, StandardScaler
+from sklearn.preprocessing import MinMaxScaler
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
@@ -65,7 +65,8 @@ class DataTransformation:
             return preprocessor
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
+        
 
     def initiate_data_transformation(self, train_path, test_path):
 
@@ -123,4 +124,4 @@ class DataTransformation:
             )
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
