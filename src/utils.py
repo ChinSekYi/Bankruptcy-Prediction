@@ -1,10 +1,15 @@
+"""
+utils.py
+
+This module contains utility functions for handling object serialization,
+model evaluation, and printing bankruptcy prediction outcomes.
+"""
+
 import os
 import pickle
 import sys
 
 import dill
-import numpy as np
-import pandas as pd
 from sklearn.metrics import r2_score
 from sklearn.model_selection import GridSearchCV
 
@@ -59,7 +64,7 @@ def evaluate_model(x_train, y_train, x_test, y_test, models, params):
             model.set_params(**gs.best_params_)
             model.fit(x_train, y_train)
 
-            y_train_pred = model.predict(x_train)
+            # y_train_pred = model.predict(x_train)
 
             y_test_pred = model.predict(x_test)
 
@@ -76,6 +81,15 @@ def evaluate_model(x_train, y_train, x_test, y_test, models, params):
 
 
 def load_object(file_path):
+    """
+    Load an object from a file using dill.
+
+    Args:
+        file_path (str): Path to the file containing the object.
+
+    Returns:
+        object: Loaded object.
+    """
     try:
         print(file_path)
         with open(file_path, "rb") as file_obj:
@@ -86,6 +100,15 @@ def load_object(file_path):
 
 
 def print_bankruptcy_outcome(pred_result):
+    """
+    Print the bankruptcy prediction outcome based on the prediction result.
+
+    Args:
+        pred_result (float): Predicted probability or score.
+
+    Returns:
+        str: Prediction outcome message.
+    """
     if pred_result >= 0.5:
         return "Bad news! The company is predicted to be bankrupt within 3 years."
     return ("Good news! The company is "
