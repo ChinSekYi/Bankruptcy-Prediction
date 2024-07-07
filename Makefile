@@ -14,6 +14,6 @@ run:
 	python main.py
 
 lint:
-	pylint src/*.py #src/components/*.py src/pipeline/*.py
+	pylint src/*.py src/components/*.py #src/pipeline/*.py
 
 all: install format lint

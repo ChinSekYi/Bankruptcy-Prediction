@@ -1,35 +1,96 @@
+"""
+data_ingestion.py
+
+This module handles the configuration and ingestion of training, testing, and raw data files.
+It defines a DataIngestionConfig class for setting default paths and imports necessary components
+for data transformation, model training, exception handling, logging, and printing bankruptcy 
+outcomes.
+
+Classes:
+- DataIngestionConfig: Configuration class for data paths.
+
+Functions:
+- None
+
+Note:
+- This module imports components from src.components for data transformation (DataTransformation,
+  DataTransformationConfig), model training (ModelTrainer, ModelTrainerConfig), exception handling
+  (CustomException), logging (logging), and utility functions for printing bankruptcy outcomes
+  (print_bankruptcy_outcome).
+- It uses standard library modules such as os, sys, dataclasses, and pathlib, as well as third-party
+  modules like sklearn.model_selection.train_test_split.
+"""
+
 import os
 import sys
 from dataclasses import dataclass
 from pathlib import Path
 
-import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score
 
-project_root = Path(__file__).resolve().parents[2]
-sys.path.append(str(project_root))
-
-from src.components.data_transformation import (DataTransformation,
-                                                DataTransformationConfig)
-from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
+from src.components.data_transformation import DataTransformation
+from src.components.model_trainer import ModelTrainer
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import print_bankruptcy_outcome
 
 
+project_root = Path(__file__).resolve().parents[2]
+sys.path.append(str(project_root))
+
+
 @dataclass
 class DataIngestionConfig:
+    """
+    Configuration class for data paths used in data ingestion processes.
+
+    Attributes:
+    - train_data_path (str): Path to training data file.
+    - test_data_path (str): Path to testing data file.
+    - raw_data_path (str): Path to raw data file.
+    """
     train_data_path: str = os.path.join("artifacts", "train.csv")
     test_data_path: str = os.path.join("artifacts", "test.csv")
     raw_data_path: str = os.path.join("artifacts", "data.csv")
 
 
 class DataIngestion:
+    """
+    DataIngestion class handles the ingestion of raw data,
+    performs train-test split, and saves the split datasets.
+
+    Attributes:
+    - ingestion_config (DataIngestionConfig): Configuration object for data paths.
+
+    Methods:
+    - __init__(): Initializes a new instance of DataIngestion with default configuration.
+    - initiate_data_ingestion(): Initiates the data ingestion process, reads a CSV file,
+      performs train-test split, and saves the datasets to specified paths.
+    """
     def __init__(self):
+        """
+        Initializes a DataIngestion instance with default configuration.
+        """
         self.ingestion_config = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
+        """
+        Initiates the data ingestion process.
+
+        Reads a CSV file from a specified path, performs train-test split,
+        and saves the split datasets to predefined paths.
+
+        Returns:
+        - Tuple containing paths to the training and testing datasets.
+
+        Raises:
+        - CustomException: If an error occurs during data ingestion process.
+
+        Usage:
+        >>> train_data_path, test_data_path = ingestion.initiate_data_ingestion()
+        """
         logging.info("Entered the data ingestion method or component")
         try:
             df = pd.read_csv(
@@ -62,7 +123,7 @@ class DataIngestion:
             )
 
         except Exception as e:
-            raise CustomException(e, sys)
+            raise CustomException(e, sys) from e
 
 
 if __name__ == "__main__":
