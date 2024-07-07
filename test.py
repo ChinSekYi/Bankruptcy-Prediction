@@ -1,6 +1,10 @@
 from src.components.data_ingestion import DataIngestion
 from src.components.data_transformation import DataTransformation
 from src.components.model_trainer import ModelTrainer
+import numpy as np
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning, module="sklearn")
+
 
 def test_data_ingestion_output():
     obj = DataIngestion()
@@ -23,13 +27,18 @@ def test_data_transformation_output():
     assert test_arr is not None
     assert preprocessor_path is not None
 
+    return train_arr, test_arr
+
 
 def test_model_output():
     obj = ModelTrainer()
-    train_array = [[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]]
-    test_array = [[11, 12, 13, 14, 15], [16, 17, 18, 19, 20]]
-    predicted, r2_score_value = obj.initiate_model_trainer(train_array, test_array)
+    train_arr, test_arr = test_data_transformation_output()
+    predicted, r2_score_value = obj.initiate_model_trainer(train_arr, test_arr)
+    print(predicted, r2_score_value)
 
     assert obj.model_trainer_config.trained_model_file_path == "artifacts/model.pkl"
     assert predicted.isnumeric()
-    assert r2_score_value.isnumeric()
+    assert r2_score_value.isnumeric() and r2_score_value <= 1 and r2_score_value >= 0
+
+if __name__ == "__main__":
+    test_model_output() 
