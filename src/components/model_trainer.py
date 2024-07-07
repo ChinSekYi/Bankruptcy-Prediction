@@ -2,7 +2,6 @@ import os
 import sys
 from dataclasses import dataclass
 
-from catboost import CatBoostRegressor
 from sklearn.ensemble import (AdaBoostRegressor, GradientBoostingRegressor,
                               RandomForestRegressor)
 from sklearn.linear_model import LinearRegression, LogisticRegression
@@ -46,7 +45,6 @@ class ModelTrainer:
                 "KNN": KNeighborsRegressor(),
                 "SVM": SVM(),
                 "XGBClassifier": XGBRegressor(),
-                "CatBoosting Classifier": CatBoostRegressor(verbose=False),
                 "AdaBoosting Classifier": AdaBoostRegressor(),
             }
 
@@ -72,11 +70,6 @@ class ModelTrainer:
                 "XGBClassifier": {
                     "learning_rate": [0.1, 0.01, 0.05, 0.001],
                     "n_estimators": [8, 16, 32, 64, 128, 256],
-                },
-                "CatBoosting Classifier": {
-                    "depth": [6, 9, 10],
-                    "learning_rate": [0.01, 0.05, 0.1],
-                    "iterations": [30, 50, 100],
                 },
                 "AdaBoosting Classifier": {
                     "learning_rate": [0.1, 0.01, 0.5, 0.001],
