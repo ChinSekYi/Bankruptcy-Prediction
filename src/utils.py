@@ -96,7 +96,7 @@ def load_object(file_path):
             return dill.load(file_obj)
 
     except Exception as e:
-        raise CustomException(e, sys)
+        raise CustomException(e, sys) from e
 
 
 def print_bankruptcy_outcome(pred_result):
