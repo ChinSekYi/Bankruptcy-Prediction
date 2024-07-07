@@ -33,11 +33,13 @@ class ModelTrainerConfig:
 
 class ModelTrainer:
     """
-    ModelTrainer class handles training of various machine learning models and evaluation of their performance.
+    ModelTrainer class handles training of various machine learning models and 
+    evaluation of their performance.
 
     Methods:
     - __init__(): Initializes a ModelTrainer instance with default configuration.
-    - initiate_model_trainer(train_array, test_array): Initiates model training, evaluates model performance, and saves the best model.
+    - initiate_model_trainer(train_array, test_array): Initiates model training, 
+    evaluates model performance, and saves the best model.
 
     """
     def __init__(self):
@@ -69,7 +71,7 @@ class ModelTrainer:
         """
         try:
             logging.info("Splitting training and test input data")
-            x_train, y_train, X_test, y_test = (
+            x_train, y_train, x_test, y_test = (
                 train_array[:, :-1],
                 train_array[:, -1],
                 test_array[:, :-1],
@@ -119,7 +121,7 @@ class ModelTrainer:
             model_report: dict = evaluate_model(
                 x_train=x_train,
                 y_train=y_train,
-                X_test=X_test,
+                x_test=x_test,
                 y_test=y_test,
                 models=models,
                 params=params,
@@ -133,12 +135,13 @@ class ModelTrainer:
 
             best_model = models[best_model_name]
 
+            # TODO: Add a threshold for best model score
             """
             if best_model_score < 0.6:
                 error_messsage = "No best model found"
                 logging.error(error_messsage)
                 raise Exception(error_messsage)
-                """
+            """
 
             logging.info(
                 f"Best model is {best_model_name} with score: {best_model_score} on testing dataset"
@@ -149,7 +152,7 @@ class ModelTrainer:
                 obj=best_model,
             )
 
-            predicted = best_model.predict(X_test)
+            predicted = best_model.predict(x_test)
 
             r2_score_value = r2_score(y_test, predicted)
 
