@@ -1,4 +1,3 @@
-[![Python application test with Github Actions](https://github.com/ChinSekYi/Bankruptcy-Prediction/actions/workflows/main.yml/badge.svg)](https://github.com/ChinSekYi/Bankruptcy-Prediction/actions/workflows/main.yml)
 # Predict Company Bankruptcy using Machine Learning
 
 <div style="display: flex; justify-content: center;">
