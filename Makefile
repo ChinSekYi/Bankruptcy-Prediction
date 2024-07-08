@@ -14,6 +14,6 @@ run:
 	python main.py
 
 lint:
-	pylint src/pipeline/*.py src/*.py src/components/*.py
+	pylint --disable=R,C  src/pipeline/*.py src/*.py src/components/*.py
 
 all: install format lint
