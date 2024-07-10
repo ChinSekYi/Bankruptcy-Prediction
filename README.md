@@ -41,15 +41,10 @@ To ensure consistent package versions among collaborators.
 conda --version
 ```
 
-### Create conda virtual environment
+### Create a virtual environment
 ```
 conda create -n dev python=3.11 
 conda activate dev
-```
-
-### Install Project Dependencies   
-```
-pip install -r requirements.txt
 ```
 
 ### Clone the Repository
@@ -57,6 +52,11 @@ Ensure you have Git installed, then clone the project repository:
 ```
 git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
 cd Bankruptcy-Prediction
+```
+
+### Install Project Dependencies   
+```
+make install
 ```
 <br>
 
