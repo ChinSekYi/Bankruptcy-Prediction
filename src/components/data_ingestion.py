@@ -140,5 +140,5 @@ if __name__ == "__main__":
 
     print(f"Prediction result (0-1): {pred_result}")
     print(len(pred_result))
-    #print(print_bankruptcy_outcome(pred_result))
-    #print(f"r2 score: {r2_score}")
+    print(print_bankruptcy_outcome(pred_result))
+    print(f"r2 score: {r2_score}")

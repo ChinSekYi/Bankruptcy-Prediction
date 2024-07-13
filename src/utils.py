@@ -73,7 +73,6 @@ def evaluate_model(x_train, y_train, x_test, y_test, models, params):
             test_model_score = r2_score(y_test, y_test_pred)
 
             report[list(models.keys())[i]] = test_model_score
-
         return report
 
     except Exception as e:
@@ -109,9 +108,13 @@ def print_bankruptcy_outcome(pred_result):
     Returns:
         str: Prediction outcome message.
     """
-    if pred_result >= 0.5:
-        return "Bad news! The company is predicted to be bankrupt within 3 years."
-    return (
-        "Good news! The company is "
-        "predicted to continue operating successfully for the next 3 years."
-    )
+    if isinstance(pred_result, float):
+        pred_result = [pred_result]
+        
+    for result in pred_result:
+        if result >= 0.5:
+            return "Bad news! The company is predicted to be bankrupt within 3 years."
+        return (
+            "Good news! The company is "
+            "predicted to continue operating successfully for the next 3 years."
+        )
