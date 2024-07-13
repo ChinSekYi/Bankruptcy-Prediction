@@ -64,7 +64,7 @@ def df_null_removal(df):
     return X_scaled_df, y
 
 
-# funciton for feature selection
+# function for feature selection
 def drop_high_corr(df, threshold=0.7):
     correlation_matrix = df.corr()
     high_cor = []

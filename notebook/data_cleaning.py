@@ -8,13 +8,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
-from src.exception import CustomException
 
 """
 functions starting with df_ can generate a processed dataframe directly
 """
 
-
+# TODO: add exception
 # function to convert target column to binary values 0 and 1
 class AsDiscrete(BaseEstimator, TransformerMixin):
 
@@ -22,50 +21,49 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, df):
-        try:
-            ncol = len(df.columns) - 1
-            feature_space = df.iloc[:, 0:ncol]
-            target_column = df.iloc[:, ncol]
+        ncol = len(df.columns) - 1
+        feature_space = df.iloc[:, 0:ncol]
+        target_column = df.iloc[:, ncol]
 
-            n = len(target_column)
-            new_col = [0] * n
-            for i in range(n):
-                if target_column[i] == "b'0'":
-                    new_col[i] = 0
-                else:
-                    new_col[i] = 1
+        n = len(target_column)
+        new_col = [0] * n
+        for i in range(n):
+            if target_column[i] == "b'0'":
+                new_col[i] = 0
+            else:
+                new_col[i] = 1
 
-            pd_col = pd.DataFrame(new_col, columns=["Target"])
-            new_df = pd.concat([feature_space, pd_col], axis=1)
+        pd_col = pd.DataFrame(new_col, columns=["Target"])
+        new_df = pd.concat([feature_space, pd_col], axis=1)
 
-            new_df["Target"] = new_df["Target"].astype("category")
+        new_df["Target"] = new_df["Target"].astype("category")
 
-            return new_df
-        except Exception as e:
-            raise CustomException(e, sys) from e
-
+        return new_df
 
 # Define a function for mapping
 def map_class_labels(df):
-    try:
-        mapping = {0: "not-bankrupt", 1: "bankrupt"}
-        df["class"] = df["class"].map(mapping)
-        return df
-    except Exception as e:
-        raise CustomException(e, sys) from e
+    mapping = {0: "not-bankrupt", 1: "bankrupt"}
+    df["class"] = df["class"].map(mapping)
+    return df
 
 def map_class_labels(X):
-    try:
-        mapping = {0: "not-bankrupt", 1: "bankrupt"}
-        if isinstance(X, pd.DataFrame):
-            X.iloc[:, -1] = X.iloc[:, -1].map(mapping)
+    mapping = {0: "not-bankrupt", 1: "bankrupt"}
+    if isinstance(X, pd.DataFrame):
+        X.iloc[:, -1] = X.iloc[:, -1].map(mapping)
+    else:
+        X[:, -1] = np.vectorize(mapping.get)(X[:, -1])
+    return X
+
+
+def as_discrete(col):
+    n = len(col)
+    new_col = [0] * n
+    for i in range(n):
+        if col[i] == b"0":
+            new_col[i] = 0
         else:
-            X[:, -1] = np.vectorize(mapping.get)(X[:, -1])
-        return X
-    except Exception as e:
-        raise CustomException(e, sys) from e
-
-
+            new_col[i] = 1
+    return pd.DataFrame(new_col)
 
 # function to separate features and target
 def get_Xy(df):

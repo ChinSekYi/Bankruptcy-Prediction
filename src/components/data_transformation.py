@@ -19,7 +19,7 @@ from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
-from src.components.data_cleaning import AsDiscrete, map_class_labels
+from notebook.data_cleaning import AsDiscrete, map_class_labels
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
