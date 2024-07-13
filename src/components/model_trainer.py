@@ -79,9 +79,11 @@ class ModelTrainer:
                 test_array[:, -1],
             )
 
-            models = {"Linear Regression": LinearRegression()}
+            models = {
+                "Decision Tree": DecisionTreeRegressor()}
 
-            """
+            """ 
+            "Linear Regression": LinearRegression()}
                 "Logistic Regression": LogisticRegression(),
                 "Random Forest": RandomForestRegressor(),
                 "Decision Tree": DecisionTreeRegressor(),
@@ -157,6 +159,7 @@ class ModelTrainer:
             predicted = best_model.predict(x_test)
 
             r2_score_value = r2_score(y_test, predicted)
+            print("in model trainer:  {}")
 
             return (predicted, r2_score_value)
 

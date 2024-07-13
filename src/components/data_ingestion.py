@@ -38,7 +38,6 @@ from src.utils import print_bankruptcy_outcome
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
-print(sys.path)
 
 @dataclass
 class DataIngestionConfig:
@@ -140,5 +139,6 @@ if __name__ == "__main__":
     pred_result, r2_score = modeltrainer.initiate_model_trainer(train_arr, test_arr)
 
     print(f"Prediction result (0-1): {pred_result}")
-    print(print_bankruptcy_outcome(pred_result))
-    print(f"r2 score: {r2_score}")
+    print(len(pred_result))
+    #print(print_bankruptcy_outcome(pred_result))
+    #print(f"r2 score: {r2_score}")

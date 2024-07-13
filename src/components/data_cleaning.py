@@ -54,6 +54,18 @@ def map_class_labels(df):
     except Exception as e:
         raise CustomException(e, sys) from e
 
+def map_class_labels(X):
+    try:
+        mapping = {0: "not-bankrupt", 1: "bankrupt"}
+        if isinstance(X, pd.DataFrame):
+            X.iloc[:, -1] = X.iloc[:, -1].map(mapping)
+        else:
+            X[:, -1] = np.vectorize(mapping.get)(X[:, -1])
+        return X
+    except Exception as e:
+        raise CustomException(e, sys) from e
+
+
 
 # function to separate features and target
 def get_Xy(df):

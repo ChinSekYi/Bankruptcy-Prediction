@@ -56,10 +56,10 @@ class DataTransformation:
         """
         try:
             numerical_columns = list(range(0, 64))
-            categorical_columns = 64
+            categorical_columns = [64]
             num_pipeline = Pipeline(
                 steps=[
-                    ("toDiscrete", AsDiscrete()),
+                    #("toDiscrete", AsDiscrete()),
                     ("imputer", SimpleImputer(strategy="median")),
                     ("scaler", MinMaxScaler()),
                 ]
@@ -72,13 +72,9 @@ class DataTransformation:
             logging.info(f"Numerical columns: {numerical_columns}")
 
             preprocessor = ColumnTransformer(
-                [
-                    (
-                        "num_pipeline",
-                        num_pipeline,
-                        numerical_columns,
-                    ),
-                    ("cat_pipeline", cat_pipeline, categorical_columns),
+                transformers=[
+                    ("num_pipeline", num_pipeline, numerical_columns),
+                    #("cat_pipeline", cat_pipeline, categorical_columns),
                 ]
             )
 
