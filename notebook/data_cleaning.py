@@ -41,7 +41,10 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
         return new_df
 
 # Define a function for mapping
-
+def map_class_labels(df):
+    mapping = {0: "not-bankrupt", 1: "bankrupt"}
+    df["class"] = df["class"].map(mapping)
+    return df
 
 def as_discrete(col):
     n = len(col)
