@@ -30,11 +30,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
-from src.components.data_transformation import DataTransformation
-from src.components.model_trainer import ModelTrainer
-from src.exception import CustomException
-from src.logger import logging
-from src.utils import print_bankruptcy_outcome
+from components.data_transformation import DataTransformation
+from components.model_trainer import ModelTrainer
+from exception import CustomException
+from logger import logging
+from utils import print_bankruptcy_outcome
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))

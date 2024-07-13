@@ -14,9 +14,9 @@ from sklearn.svm import SVC as SVM
 from sklearn.tree import DecisionTreeRegressor
 from xgboost import XGBRegressor
 
-from src.exception import CustomException
-from src.logger import logging
-from src.utils import evaluate_model, save_object
+from exception import CustomException
+from logger import logging
+from utils import evaluate_model, save_object
 
 
 @dataclass
