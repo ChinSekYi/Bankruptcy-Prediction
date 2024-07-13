@@ -30,8 +30,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 
-from components.data_transformation import DataTransformation
-from components.model_trainer import ModelTrainer
+from data_transformation import DataTransformation
+from model_trainer import ModelTrainer
 from exception import CustomException
 from logger import logging
 from utils import print_bankruptcy_outcome

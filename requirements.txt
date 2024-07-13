@@ -13,7 +13,7 @@ isort
 pylint
 pytest
 nbval
-Flask
+flask
 tqdm
 ipykernel
 requests

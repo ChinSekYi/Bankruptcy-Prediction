@@ -16,14 +16,14 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 
 # Custom imports
-from exception import CustomException
+from src.exception import CustomException
 from logger import logging
 from utils import save_object
 from data_cleaning import AsDiscrete, map_class_labels
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
-
+print(sys.path)
 
 @dataclass
 class DataTransformationConfig:
