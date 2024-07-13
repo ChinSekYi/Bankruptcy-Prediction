@@ -74,19 +74,18 @@ def get_Xy(df):
 
 # function to handle missing values
 def med_impute(df, y):
-    # remove columns with more than 40% values being null
+    # Remove columns with more than 40% null values
     thd1 = df.shape[0] * 0.4
     cols = df.columns[df.isnull().sum() < thd1]
     df = df[cols]
 
-    # remove rows with more than 50% values being null
+    # Remove rows with more than 50% null values
     thd2 = df.shape[1] * 0.5
     y = y[df.isnull().sum(axis=1) <= thd2]
     df = df[df.isnull().sum(axis=1) <= thd2]
 
-    # median imputation for null values
+    # Median imputation for remaining null values
     df = df.fillna(df.median())
-
     return df, y
 
 
