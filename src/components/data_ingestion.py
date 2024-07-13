@@ -36,10 +36,9 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import print_bankruptcy_outcome
 
-
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
-
+print(sys.path)
 
 @dataclass
 class DataIngestionConfig:
