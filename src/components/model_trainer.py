@@ -131,6 +131,7 @@ class ModelTrainer:
                 params=params,
             )
 
+            # Get best model with the best test score
             best_model_score = max(model_report.values())
 
             best_model_name = list(model_report.keys())[
