@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
-from exception import CustomException
+from src.exception import CustomException
 
 """
 functions starting with df_ can generate a processed dataframe directly
