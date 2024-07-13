@@ -49,7 +49,6 @@ class DataTransformation:
     def __init__(self):
         """
         Initializes a DataTransformation instance with default configuration.
-
         """
         self.data_transformation_config = DataTransformationConfig()
 
@@ -59,9 +58,6 @@ class DataTransformation:
 
         Returns:
         - ColumnTransformer: Preprocessing object for numerical features.
-
-        Raises:
-        - CustomException: If an error occurs during object creation.
 
         Usage:
         >>> transformer = DataTransformation()
@@ -100,7 +96,6 @@ class DataTransformation:
     def initiate_data_transformation(self, train_path, test_path):
         """
         Initiates the data transformation process.
-
         Reads train and test datasets, applies preprocessing, and saves the preprocessor object.
 
         Args:
@@ -109,9 +104,6 @@ class DataTransformation:
 
         Returns:
         - Tuple: Transformed train and test datasets and the file path of the preprocessor object.
-
-        Raises:
-        - CustomException: If an error occurs during data transformation.
 
         Usage:
         >>> transformer = DataTransformation()
