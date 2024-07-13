@@ -111,5 +111,7 @@ def print_bankruptcy_outcome(pred_result):
     """
     if pred_result >= 0.5:
         return "Bad news! The company is predicted to be bankrupt within 3 years."
-    return ("Good news! The company is "
-            "predicted to continue operating successfully for the next 3 years.")
+    return (
+        "Good news! The company is "
+        "predicted to continue operating successfully for the next 3 years."
+    )

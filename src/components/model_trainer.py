@@ -6,8 +6,7 @@ import os
 import sys
 from dataclasses import dataclass
 
-from sklearn.ensemble import (AdaBoostRegressor,
-                              RandomForestRegressor)
+from sklearn.ensemble import AdaBoostRegressor, RandomForestRegressor
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.metrics import r2_score
 from sklearn.neighbors import KNeighborsRegressor
@@ -28,20 +27,22 @@ class ModelTrainerConfig:
     Attributes:
     - trained_model_file_path (str): File path to save the trained model.
     """
+
     trained_model_file_path = os.path.join("artifacts", "model.pkl")
 
 
 class ModelTrainer:
     """
-    ModelTrainer class handles training of various machine learning models and 
+    ModelTrainer class handles training of various machine learning models and
     evaluation of their performance.
 
     Methods:
     - __init__(): Initializes a ModelTrainer instance with default configuration.
-    - initiate_model_trainer(train_array, test_array): Initiates model training, 
+    - initiate_model_trainer(train_array, test_array): Initiates model training,
     evaluates model performance, and saves the best model.
 
     """
+
     def __init__(self):
         """
         Initializes a ModelTrainer instance with default configuration.

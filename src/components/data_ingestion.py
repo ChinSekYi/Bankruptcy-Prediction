@@ -51,6 +51,7 @@ class DataIngestionConfig:
     - test_data_path (str): Path to testing data file.
     - raw_data_path (str): Path to raw data file.
     """
+
     train_data_path: str = os.path.join("artifacts", "train.csv")
     test_data_path: str = os.path.join("artifacts", "test.csv")
     raw_data_path: str = os.path.join("artifacts", "data.csv")
@@ -69,6 +70,7 @@ class DataIngestion:
     - initiate_data_ingestion(): Initiates the data ingestion process, reads a CSV file,
       performs train-test split, and saves the datasets to specified paths.
     """
+
     def __init__(self):
         """
         Initializes a DataIngestion instance with default configuration.

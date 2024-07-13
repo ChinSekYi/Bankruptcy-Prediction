@@ -13,26 +13,24 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 
 # Custom imports
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
+from src.components.data_cleaning import AsDiscrete, map_class_labels
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
-
 
 
 @dataclass
 class DataTransformationConfig:
     """
     Configuration class for data transformation operations.
-
-    Attributes:
-    - preprocessor_ob_file_path (str): File path to save the preprocessor object.
     """
+
     preprocessor_ob_file_path = os.path.join("artifacts", "preprocessor.pkl")
 
 
@@ -46,6 +44,7 @@ class DataTransformation:
     - initiate_data_transformation(train_path, test_path): Initiates data transformation,
       performs preprocessing on train and test datasets, and saves the preprocessor object.
     """
+
     def __init__(self):
         """
         Initializes a DataTransformation instance with default configuration.
@@ -55,22 +54,19 @@ class DataTransformation:
     def get_data_transformer_object(self):
         """
         Returns the preprocessing object.
-
-        Returns:
-        - ColumnTransformer: Preprocessing object for numerical features.
-
-        Usage:
-        >>> transformer = DataTransformation()
-        >>> preprocessor = transformer.get_data_transformer_object()
         """
         try:
             numerical_columns = list(range(0, 64))
             categorical_columns = 64
             num_pipeline = Pipeline(
                 steps=[
+                    ("toDiscrete", AsDiscrete()),
                     ("imputer", SimpleImputer(strategy="median")),
                     ("scaler", MinMaxScaler()),
                 ]
+            )
+            cat_pipeline = Pipeline(
+                ("label_mapping", FunctionTransformer(map_class_labels)),
             )
 
             logging.info(f"Categorical columns: {categorical_columns}")
@@ -79,11 +75,13 @@ class DataTransformation:
             preprocessor = ColumnTransformer(
                 [
                     (
-                        "num_pipeline",
-                        num_pipeline,
-                        numerical_columns,
-                    )
-                    # ,("cat_pipeline", cat_pipeline, categorical_columns)
+                    "num_pipeline",
+                    num_pipeline,
+                    numerical_columns,
+                    ),
+                    ("cat_pipeline", 
+                     cat_pipeline, 
+                     categorical_columns),
                 ]
             )
 
@@ -91,7 +89,6 @@ class DataTransformation:
 
         except Exception as e:
             raise CustomException(e, sys) from e
-
 
     def initiate_data_transformation(self, train_path, test_path):
         """
@@ -104,11 +101,6 @@ class DataTransformation:
 
         Returns:
         - Tuple: Transformed train and test datasets and the file path of the preprocessor object.
-
-        Usage:
-        >>> transformer = DataTransformation()
-        >>> train_data, test_data, preprocessor_path = 
-        transformer.initiate_data_transformation(train_path, test_path)
         """
         try:
             train_df = pd.read_csv(train_path)
@@ -122,6 +114,7 @@ class DataTransformation:
             # numerical_columns = list(range(0, 64))
             target_column_index = 64
 
+            logging.info("Renaming columns")
             column_names = pd.read_csv("src/components/column_names.txt", header=None)
             train_df.columns = list(column_names[0])
             test_df.columns = list(column_names[0])

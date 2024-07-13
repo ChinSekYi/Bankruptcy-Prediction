@@ -19,6 +19,7 @@ class PredictPipeline:
     """
     Implements a pipeline for predicting financial metrics using various models.
     """
+
     def __init__(self):
         pass
 
