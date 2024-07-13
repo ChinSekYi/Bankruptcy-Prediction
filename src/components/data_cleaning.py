@@ -5,7 +5,7 @@ import pandas as pd
 from imblearn.over_sampling import SMOTE
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
 from src.exception import CustomException
@@ -22,7 +22,7 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, df):
-        try:
+        try: 
             ncol = len(df.columns) - 1
             feature_space = df.iloc[:, 0:ncol]
             target_column = df.iloc[:, ncol]
@@ -48,8 +48,8 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
 # Define a function for mapping
 def map_class_labels(df):
     try:
-        mapping = {0: "not-bankrupt", 1: "bankrupt"}
-        df["class"] = df["class"].map(mapping)
+        mapping = {0: 'not-bankrupt', 1: 'bankrupt'}
+        df['class'] = df['class'].map(mapping)
         return df
     except Exception as e:
         raise CustomException(e, sys) from e
