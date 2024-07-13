@@ -79,8 +79,9 @@ class ModelTrainer:
                 test_array[:, -1],
             )
 
-            models = {
-                "Linear Regression": LinearRegression(),
+            models = {"Linear Regression": LinearRegression()}
+
+            """
                 "Logistic Regression": LogisticRegression(),
                 "Random Forest": RandomForestRegressor(),
                 "Decision Tree": DecisionTreeRegressor(),
@@ -88,7 +89,7 @@ class ModelTrainer:
                 "SVM": SVM(),
                 "XGBClassifier": XGBRegressor(),
                 "AdaBoosting Classifier": AdaBoostRegressor(),
-            }
+            } """
 
             params = {
                 "Decision Tree": {

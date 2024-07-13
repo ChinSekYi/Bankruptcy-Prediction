@@ -22,7 +22,7 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
         return self
 
     def transform(self, df):
-        try: 
+        try:
             ncol = len(df.columns) - 1
             feature_space = df.iloc[:, 0:ncol]
             target_column = df.iloc[:, ncol]
@@ -48,8 +48,8 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
 # Define a function for mapping
 def map_class_labels(df):
     try:
-        mapping = {0: 'not-bankrupt', 1: 'bankrupt'}
-        df['class'] = df['class'].map(mapping)
+        mapping = {0: "not-bankrupt", 1: "bankrupt"}
+        df["class"] = df["class"].map(mapping)
         return df
     except Exception as e:
         raise CustomException(e, sys) from e
