@@ -88,6 +88,16 @@ def normalise(df):
     return X_scaled
 
 
+# function to solve skewed data
+def log_transform(df):
+    X, y = get_Xy(df)
+    X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: np.log(x + 1))  # Adding 1 to avoid log(0)
+    df_transformed = pd.concat([X_transformed, y], axis=1)
+    return df_transformed
+
+
+
+
 # preliminary cleaning
 def df_null_removal(df):
     X, y = get_Xy(df)
