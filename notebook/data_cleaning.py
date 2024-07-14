@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
+from scipy.stats import boxcox
 
 """
 functions starting with df_ can generate a processed dataframe directly
@@ -88,14 +89,39 @@ def normalise(df):
     return X_scaled
 
 
-# function to solve skewed data
+def check_skewness(df):
+    X, y = get_Xy(df)
+    skewness = X.skew()
+    skewed_features = skewness[abs(skewness) > 0.5]
+    num_skewed_features = len(skewed_features)
+    return num_skewed_features
+
+
+# functions to solve skewed data
 def log_transform(df):
     X, y = get_Xy(df)
+    # Apply log transformation to numeric columns only
     X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: np.log(x + 1))  # Adding 1 to avoid log(0)
     df_transformed = pd.concat([X_transformed, y], axis=1)
     return df_transformed
 
+def sqrt_transform(df):
+    X, y = get_Xy(df)
+    X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: np.sqrt(x))
+    df_transformed = pd.concat([X_transformed, y], axis=1)
+    return df_transformed
 
+def cube_root_transform(df):
+    X, y = get_Xy(df)
+    X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: np.cbrt(x))
+    df_transformed = pd.concat([X_transformed, y], axis=1)
+    return df_transformed
+
+def boxcox_transform(df):
+    X, y = get_Xy(df)
+    X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: boxcox(x + 1)[0] if np.all(x > 0) else x)  # Box-Cox requires positive values
+    df_transformed = pd.concat([X_transformed, y], axis=1)
+    return df_transformed
 
 
 # preliminary cleaning
