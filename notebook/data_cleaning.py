@@ -100,7 +100,7 @@ def check_skewness(df):
 # Function to count outliers in each column
 def count_outliers(df):
     outlier_counts = {}
-    for column in df.columns:
+    for column in df.columns[:-1]:
         if pd.api.types.is_numeric_dtype(df[column]):
             Q1 = df[column].quantile(0.25)
             Q3 = df[column].quantile(0.75)
