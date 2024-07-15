@@ -114,12 +114,12 @@ def count_and_percentage_outliers(df):
             
             outlier_counts[column] = len(outliers)
             percentage_outliers = (len(outliers) / len(X)) * 100
-            outlier_percentages[column] = f"{percentage_outliers:.2f}%"  # Format percentage with two decimal places and add '%' sign
+            outlier_percentages[column] = percentage_outliers # Format percentage with two decimal places and add '%' sign
     
     outlier_counts_df = pd.DataFrame(list(outlier_counts.items()), columns=['Column', 'Number of Outliers'])
     outlier_percentages_df = pd.DataFrame(list(outlier_percentages.items()), columns=['Column', 'Percentage of Outliers'])
     
-    result_df = pd.merge(outlier_counts_df, outlier_percentages_df, on='Column')
+    result_df = pd.concat([outlier_counts_df, outlier_percentages_df['Percentage of Outliers']], axis=1)
     
     return result_df
 
