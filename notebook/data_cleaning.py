@@ -97,6 +97,29 @@ def check_skewness(df):
     return num_skewed_features
 
 
+# Function to count outliers in each column
+def count_outliers(df):
+    outlier_counts = {}
+    for column in df.columns:
+        if pd.api.types.is_numeric_dtype(df[column]):
+            Q1 = df[column].quantile(0.25)
+            Q3 = df[column].quantile(0.75)
+            IQR = Q3 - Q1
+            lower_bound = Q1 - 1.5 * IQR
+            upper_bound = Q3 + 1.5 * IQR
+            outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
+            outlier_counts[column] = len(outliers)
+    return outlier_counts
+
+
+# Function to calculate the percentage of outliers in each column
+def percentage_outliers(df):
+    outlier_counts = count_outliers(df)
+    total_rows = len(df)
+    outlier_percentages = {column: (count / total_rows) * 100 for column, count in outlier_counts.items()}
+    return outlier_percentages
+
+
 # functions to solve skewed data
 def log_transform(df):
     X, y = get_Xy(df)
@@ -122,6 +145,26 @@ def boxcox_transform(df):
     X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: boxcox(x + 1)[0] if np.all(x > 0) else x)  # Box-Cox requires positive values
     df_transformed = pd.concat([X_transformed, y], axis=1)
     return df_transformed
+
+
+def remove_outliers_mad(df, column, threshold=3.5):
+    median = df[column].median()
+    mad = np.median(np.abs(df[column] - median))
+    lower_bound = median - threshold * mad
+    upper_bound = median + threshold * mad
+    return df[(df[column] >= lower_bound) & (df[column] <= upper_bound)]
+
+
+# Apply MAD method
+def apply_mad_removal(df):
+    df_cleaned = df.copy()
+    for column in df.columns:
+        df_cleaned = remove_outliers_mad(df_cleaned, column)
+    return df_cleaned
+
+
+
+
 
 
 # preliminary cleaning
