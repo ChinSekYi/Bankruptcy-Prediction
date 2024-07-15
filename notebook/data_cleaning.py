@@ -1,18 +1,20 @@
 import sys
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from imblearn.over_sampling import SMOTE
+from scipy.stats import boxcox
+from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.feature_selection import SelectKBest, f_classif
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
-from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import Pipeline
-from scipy.stats import boxcox
+from sklearn.preprocessing import FunctionTransformer, MinMaxScaler
 
 """
 functions starting with df_ can generate a processed dataframe directly
 """
+
 
 # TODO: add exception
 # function to convert target column to binary values 0 and 1
@@ -59,6 +61,7 @@ def as_discrete(col):
             new_col[i] = 1
     return pd.DataFrame(new_col)
 
+
 # function to separate features and target
 def get_Xy(df):
     X = df.iloc[:, 0 : len(df.columns) - 1]
@@ -98,11 +101,12 @@ def check_skewness(df):
     num_skewed_features = len(skewed_features)
     return num_skewed_features
 
+
 def count_and_percentage_outliers(df):
     X, y = get_Xy(df)
     outlier_counts = {}
     outlier_percentages = {}
-    
+
     for column in X:
         if pd.api.types.is_numeric_dtype(X[column]):
             Q1 = X[column].quantile(0.25)
@@ -111,25 +115,37 @@ def count_and_percentage_outliers(df):
             lower_bound = Q1 - 1.5 * IQR
             upper_bound = Q3 + 1.5 * IQR
             outliers = X[(X[column] < lower_bound) | (X[column] > upper_bound)]
-            
+
             outlier_counts[column] = len(outliers)
             percentage_outliers = (len(outliers) / len(X)) * 100
-            outlier_percentages[column] = percentage_outliers # Format percentage with two decimal places and add '%' sign
-    
-    outlier_counts_df = pd.DataFrame(list(outlier_counts.items()), columns=['Column', 'Number of Outliers'])
-    outlier_percentages_df = pd.DataFrame(list(outlier_percentages.items()), columns=['Column', 'Percentage of Outliers'])
-    
-    result_df = pd.concat([outlier_counts_df, outlier_percentages_df['Percentage of Outliers']], axis=1)
-    
+            outlier_percentages[column] = (
+                percentage_outliers  # Format percentage with two decimal places and add '%' sign
+            )
+
+    outlier_counts_df = pd.DataFrame(
+        list(outlier_counts.items()), columns=["Column", "Number of Outliers"]
+    )
+    outlier_percentages_df = pd.DataFrame(
+        list(outlier_percentages.items()), columns=["Column", "Percentage of Outliers"]
+    )
+
+    result_df = pd.concat(
+        [outlier_counts_df, outlier_percentages_df["Percentage of Outliers"]], axis=1
+    )
+
     return result_df
+
 
 # functions to solve skewed data
 def log_transform(df):
     X, y = get_Xy(df)
     # Apply log transformation to numeric columns only
-    X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: np.log(x + 1))  # Adding 1 to avoid log(0)
+    X_transformed = X.select_dtypes(include=[np.number]).apply(
+        lambda x: np.log(x + 1)
+    )  # Adding 1 to avoid log(0)
     df_transformed = pd.concat([X_transformed, y], axis=1)
     return df_transformed
+
 
 def sqrt_transform(df):
     X, y = get_Xy(df)
@@ -137,15 +153,19 @@ def sqrt_transform(df):
     df_transformed = pd.concat([X_transformed, y], axis=1)
     return df_transformed
 
+
 def cube_root_transform(df):
     X, y = get_Xy(df)
     X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: np.cbrt(x))
     df_transformed = pd.concat([X_transformed, y], axis=1)
     return df_transformed
 
+
 def boxcox_transform(df):
     X, y = get_Xy(df)
-    X_transformed = X.select_dtypes(include=[np.number]).apply(lambda x: boxcox(x + 1)[0] if np.all(x > 0) else x)  # Box-Cox requires positive values
+    X_transformed = X.select_dtypes(include=[np.number]).apply(
+        lambda x: boxcox(x + 1)[0] if np.all(x > 0) else x
+    )  # Box-Cox requires positive values
     df_transformed = pd.concat([X_transformed, y], axis=1)
     return df_transformed
 
@@ -164,10 +184,6 @@ def apply_mad_removal(df):
     for column in df.columns:
         df_cleaned = remove_outliers_mad(df_cleaned, column)
     return df_cleaned
-
-
-
-
 
 
 # preliminary cleaning

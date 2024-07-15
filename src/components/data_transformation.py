@@ -13,16 +13,17 @@ import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import MinMaxScaler, FunctionTransformer
+from sklearn.preprocessing import FunctionTransformer, MinMaxScaler
 
+from notebook.data_cleaning import AsDiscrete, map_class_labels
 # Custom imports
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
-from notebook.data_cleaning import AsDiscrete, map_class_labels
 
 project_root = Path(__file__).resolve().parents[2]
 sys.path.append(str(project_root))
+
 
 @dataclass
 class DataTransformationConfig:
@@ -59,7 +60,7 @@ class DataTransformation:
             categorical_columns = [64]
             num_pipeline = Pipeline(
                 steps=[
-                    #("toDiscrete", AsDiscrete()),
+                    # ("toDiscrete", AsDiscrete()),
                     ("imputer", SimpleImputer(strategy="median")),
                     ("scaler", MinMaxScaler()),
                 ]
@@ -74,7 +75,7 @@ class DataTransformation:
             preprocessor = ColumnTransformer(
                 transformers=[
                     ("num_pipeline", num_pipeline, numerical_columns),
-                    #("cat_pipeline", cat_pipeline, categorical_columns),
+                    # ("cat_pipeline", cat_pipeline, categorical_columns),
                 ]
             )
 

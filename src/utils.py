@@ -110,7 +110,7 @@ def print_bankruptcy_outcome(pred_result):
     """
     if isinstance(pred_result, float):
         pred_result = [pred_result]
-        
+
     for result in pred_result:
         if result >= 0.5:
             return "Bad news! The company is predicted to be bankrupt within 3 years."

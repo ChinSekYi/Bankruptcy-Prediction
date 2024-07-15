@@ -79,8 +79,7 @@ class ModelTrainer:
                 test_array[:, -1],
             )
 
-            models = {
-                "Decision Tree": DecisionTreeRegressor()}
+            models = {"Decision Tree": DecisionTreeRegressor()}
 
             """ 
             "Linear Regression": LinearRegression()}
