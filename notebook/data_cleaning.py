@@ -109,7 +109,9 @@ def count_outliers(df):
             upper_bound = Q3 + 1.5 * IQR
             outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
             outlier_counts[column] = len(outliers)
-    return outlier_counts
+
+    outlier_counts_df = pd.DataFrame(list(outlier_counts.items()), columns=['Column', 'Number of Outliers'])
+    return outlier_counts_df
 
 
 # Function to calculate the percentage of outliers in each column
@@ -117,7 +119,8 @@ def percentage_outliers(df):
     outlier_counts = count_outliers(df)
     total_rows = len(df)
     outlier_percentages = {column: (count / total_rows) * 100 for column, count in outlier_counts.items()}
-    return outlier_percentages
+    outlier_percentages_df = pd.DataFrame(list(outlier_percentages.items()), columns=['Column', 'Percentage of Outliers'])
+    return outlier_percentages_df
 
 
 # functions to solve skewed data
