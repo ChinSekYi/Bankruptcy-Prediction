@@ -41,11 +41,13 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
 
         return new_df
 
+
 # Define a function for mapping
 def map_class_labels(df):
     mapping = {0: "not-bankrupt", 1: "bankrupt"}
     df["class"] = df["class"].map(mapping)
     return df
+
 
 def as_discrete(col):
     n = len(col)
@@ -96,32 +98,30 @@ def check_skewness(df):
     num_skewed_features = len(skewed_features)
     return num_skewed_features
 
-
-# Function to count outliers in each column
-def count_outliers(df):
+def count_and_percentage_outliers(df):
+    X, y = get_Xy(df)
     outlier_counts = {}
-    for column in df.columns[:-1]:
-        if pd.api.types.is_numeric_dtype(df[column]):
-            Q1 = df[column].quantile(0.25)
-            Q3 = df[column].quantile(0.75)
+    outlier_percentages = {}
+    
+    for column in X:
+        if pd.api.types.is_numeric_dtype(X[column]):
+            Q1 = X[column].quantile(0.25)
+            Q3 = X[column].quantile(0.75)
             IQR = Q3 - Q1
             lower_bound = Q1 - 1.5 * IQR
             upper_bound = Q3 + 1.5 * IQR
-            outliers = df[(df[column] < lower_bound) | (df[column] > upper_bound)]
+            outliers = X[(X[column] < lower_bound) | (X[column] > upper_bound)]
+            
             outlier_counts[column] = len(outliers)
-
+            percentage_outliers = (len(outliers) / len(X)) * 100
+            outlier_percentages[column] = f"{percentage_outliers:.2f}%"  # Format percentage with two decimal places and add '%' sign
+    
     outlier_counts_df = pd.DataFrame(list(outlier_counts.items()), columns=['Column', 'Number of Outliers'])
-    return outlier_counts_df
-
-
-# Function to calculate the percentage of outliers in each column
-def percentage_outliers(df):
-    outlier_counts = count_outliers(df)
-    total_rows = len(df)
-    outlier_percentages = {column: (count / total_rows) * 100 for column, count in outlier_counts.items()}
     outlier_percentages_df = pd.DataFrame(list(outlier_percentages.items()), columns=['Column', 'Percentage of Outliers'])
-    return outlier_percentages_df
-
+    
+    result_df = pd.merge(outlier_counts_df, outlier_percentages_df, on='Column')
+    
+    return result_df
 
 # functions to solve skewed data
 def log_transform(df):
