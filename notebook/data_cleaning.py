@@ -51,17 +51,6 @@ def map_class_labels(df):
     return df
 
 
-def as_discrete(col):
-    n = len(col)
-    new_col = [0] * n
-    for i in range(n):
-        if col[i] == b"0":
-            new_col[i] = 0
-        else:
-            new_col[i] = 1
-    return pd.DataFrame(new_col)
-
-
 # function to separate features and target
 def get_Xy(df):
     X = df.iloc[:, 0 : len(df.columns) - 1]
@@ -180,7 +169,7 @@ def remove_outliers_mad(df, column, threshold=3.5):
 
 # Apply MAD method
 def apply_mad_removal(df):
-    X, y = df.getXy()
+    X, y = get_Xy(df)
     for column in X.columns:
         X_cleaned = remove_outliers_mad(X, column)
 
@@ -190,6 +179,9 @@ def apply_mad_removal(df):
 
     return df_concat
 
+
+
+### Used in FEATURE_SELECTION
 
 # preliminary cleaning
 def df_null_removal(df):
