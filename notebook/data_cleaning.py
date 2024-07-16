@@ -180,10 +180,15 @@ def remove_outliers_mad(df, column, threshold=3.5):
 
 # Apply MAD method
 def apply_mad_removal(df):
-    df_cleaned = df.copy()
-    for column in df.columns:
-        df_cleaned = remove_outliers_mad(df_cleaned, column)
-    return df_cleaned
+    X, y = df.getXy()
+    for column in X.columns:
+        X_cleaned = remove_outliers_mad(X, column)
+
+    X_cleaned.reset_index(drop=True, inplace=True)
+    y.reset_index(drop=True, inplace=True)
+    df_concat = pd.concat([X_cleaned, y], axis=1)
+
+    return df_concat
 
 
 # preliminary cleaning
