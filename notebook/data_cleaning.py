@@ -36,10 +36,10 @@ class AsDiscrete(BaseEstimator, TransformerMixin):
             else:
                 new_col[i] = 1
 
-        pd_col = pd.DataFrame(new_col, columns=["Target"])
+        pd_col = pd.DataFrame(new_col, columns=["class"])
         new_df = pd.concat([feature_space, pd_col], axis=1)
 
-        new_df["Target"] = new_df["Target"].astype("category")
+        new_df["class"] = new_df["class"].astype("category")
 
         return new_df
 
@@ -65,25 +65,25 @@ def as_discrete(col):
 # function to separate features and target
 def get_Xy(df):
     X = df.iloc[:, 0 : len(df.columns) - 1]
-    y = as_discrete(df.iloc[:, -1])
+    y = df.iloc[:, -1]
     return X, y
 
 
 # function to handle missing values
-def med_impute(df, y):
+def med_impute(X, y):
     # Remove columns with more than 40% null values
-    thd1 = df.shape[0] * 0.4
-    cols = df.columns[df.isnull().sum() < thd1]
-    df = df[cols]
+    thd1 = X.shape[0] * 0.4
+    cols = X.columns[X.isnull().sum() < thd1]
+    X = X[cols]
 
     # Remove rows with more than 50% null values
-    thd2 = df.shape[1] * 0.5
-    y = y[df.isnull().sum(axis=1) <= thd2]
-    df = df[df.isnull().sum(axis=1) <= thd2]
+    thd2 = X.shape[1] * 0.5
+    y = y[X.isnull().sum(axis=1) <= thd2]
+    X = X[X.isnull().sum(axis=1) <= thd2]
 
     # Median imputation for remaining null values
-    df = df.fillna(df.median())
-    return df, y
+    X = X.fillna(X.median())
+    return X, y
 
 
 # function to normalise numerical columns to remove effect of inconsistent scales
