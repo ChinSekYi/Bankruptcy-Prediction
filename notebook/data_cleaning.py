@@ -179,6 +179,7 @@ def apply_mad_removal(df):
 
     return df_concat
 
+
 ### overall
 def df_cleaning(df):
     X, y = get_Xy(df)
@@ -194,6 +195,7 @@ def df_cleaning(df):
     result_df = map_class_labels(df_concat)
     return result_df
 
+
 def df_preprocess_after_EDA(df):
     column_names = pd.read_csv("column_names.txt", header=None)
     df.columns = column_names
@@ -201,7 +203,6 @@ def df_preprocess_after_EDA(df):
     df_cube_root_transformed = cube_root_transform(df_cleaned)
     df = df_cube_root_transformed
     return df
-
 
 
 ### Used in FEATURE_SELECTION
