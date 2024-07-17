@@ -179,6 +179,30 @@ def apply_mad_removal(df):
 
     return df_concat
 
+### overall
+def df_cleaning(df):
+    X, y = get_Xy(df)
+    X_imputed, y = med_impute(X, y)
+    X_scaled_df = normalise(X_imputed)
+    y_df = pd.DataFrame(y)
+
+    X_scaled_df.reset_index(drop=True, inplace=True)
+    y_df.reset_index(drop=True, inplace=True)
+
+    df_concat = pd.concat([X_scaled_df, y_df], axis=1)
+    df_concat["class"] = df_concat["class"].astype(int)
+    result_df = map_class_labels(df_concat)
+    return result_df
+
+def df_preprocess_after_EDA(df):
+    column_names = pd.read_csv("column_names.txt", header=None)
+    df.columns = column_names
+    df_cleaned = df_cleaning(df)
+    df_cube_root_transformed = cube_root_transform(df_cleaned)
+    df = df_cube_root_transformed
+    return df
+
+
 
 ### Used in FEATURE_SELECTION
 
