@@ -363,8 +363,7 @@ def get_df_with_top_k_features(k_features, *args):  # after pre_process(df)
 def find_best_k_features_from_ANOVA(model, *args):
     X_train = args[0]
     original_n_features = len(X_train.columns)
-
-    # find the optimum number of features that gives the best test accuracy
+    
     train_acc_dict = {}  # 0 is a dummy accuracy for k=0 features
     test_acc_dict = {}
     train_test_dataset = {}
@@ -375,6 +374,7 @@ def find_best_k_features_from_ANOVA(model, *args):
         train_test_dataset[k] = train_test_dataset_after_ANOVA
         train_acc_dict[k] = train_accuracy
         test_acc_dict[k] = test_accuracy
+        print(f"k: {k}, train_accuracy: {train_accuracy}, test_accuracy: {test_accuracy}")
 
     # Find k that gives the highest accuracy
     best_train_k = max(train_acc_dict, key=train_acc_dict.get)
