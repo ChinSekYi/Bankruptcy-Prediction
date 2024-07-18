@@ -359,12 +359,8 @@ def get_df_with_top_k_features(k_features, *args):  # after pre_process(df)
 
     return selected_columns_X_train, selected_columns_X_test, y_train, y_test
 
-#old
-def find_best_k_features_from_ANOVA(model, *args):
-    # output: X_y training & test dataset that gives the best test accuracy
-    # model: input is *previous_args
-    #        output is train_accuracy, test_accuracy
 
+def find_best_k_features_from_ANOVA(model, *args):
     X_train = args[0]
     original_n_features = len(X_train.columns)
 
@@ -376,42 +372,6 @@ def find_best_k_features_from_ANOVA(model, *args):
     for k in range(1, original_n_features + 1):
         train_test_dataset_after_ANOVA = get_df_with_top_k_features(k, *args)
         train_accuracy, test_accuracy = model(*train_test_dataset_after_ANOVA)
-        train_test_dataset[k] = train_test_dataset_after_ANOVA
-        train_acc_dict[k] = train_accuracy
-        test_acc_dict[k] = test_accuracy
-
-    # Find k that gives the highest accuracy
-    best_train_k = max(train_acc_dict, key=train_acc_dict.get)
-    best_test_k = max(test_acc_dict, key=test_acc_dict.get)
-
-    print(f"\033[96mBest k for train_accuracy:\033[00m {best_train_k}")
-    print(f"\033[96mBest k for test_accuracy:\033[00m {best_test_k}")
-
-    plot_ANOVA_test_graph(train_acc_dict, test_acc_dict)
-
-    return train_test_dataset[best_test_k]
-
-
-#improved
-def find_best_k_features_from_ANOVA(model, params, *args):
-    X_train = args[0]
-    X_test = args[1]
-    y_train = args[2]
-    y_test = args[3]
-
-    original_n_features = len(X_train.columns)
-
-    # find the optimum number of features that gives the best test accuracy
-    train_acc_dict = {}  # 0 is a dummy accuracy for k=0 features
-    test_acc_dict = {}
-    train_test_dataset = {}
-
-    def model2(model, params, *args):
-        return evaluate_model(model, params, *args)
-
-    for k in range(1, original_n_features + 1):
-        train_test_dataset_after_ANOVA = get_df_with_top_k_features(k, *args)
-        train_accuracy, test_accuracy = model2(model, params, *train_test_dataset_after_ANOVA)
         train_test_dataset[k] = train_test_dataset_after_ANOVA
         train_acc_dict[k] = train_accuracy
         test_acc_dict[k] = test_accuracy
@@ -468,7 +428,12 @@ def evaluate_model(model, params, *args):
     return train_model_r2score, test_model_r2score
 
 
+
 def train_and_evaluate_model(model, *args):
+    """
+    Train and evaluate a model using the provided data.
+    Specifically used for ANOVA test
+    """
     X_train = args[0]
     X_test = args[1]
     y_train = args[2]
