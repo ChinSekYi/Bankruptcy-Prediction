@@ -217,8 +217,7 @@ def df_null_removal(df):
 
 
 # function for feature selection
-def drop_high_corr(df, threshold=0.7):
-    X,y = get_Xy(df)
+def drop_high_corr(X, threshold=0.7):
     correlation_matrix = X.corr()
     high_cor = []
     dropped_features = []
@@ -252,14 +251,12 @@ def drop_high_corr(df, threshold=0.7):
                 print("Feature '" + feature2 + "' not found in the DataFrame.")
 
     X.reset_index(drop=True, inplace=True)
-    y.reset_index(drop=True, inplace=True)
-    df = pd.concat([X, y], axis=1)
-    
-    return df
+    return X, dropped_features
 
 
-
-
+def drop_corr_columns_from_test(X_test, dropped_features):
+    X_test_dropped = X_test.drop(columns=dropped_features, errors='ignore')
+    return X_test_dropped
 
 
 # secondary cleaning
