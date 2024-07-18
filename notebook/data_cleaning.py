@@ -1,5 +1,3 @@
-import sys
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -7,9 +5,10 @@ from imblearn.over_sampling import SMOTE
 from scipy.stats import boxcox
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.feature_selection import SelectKBest, f_classif
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, MinMaxScaler
+from sklearn.metrics import r2_score
 
 """
 functions starting with df_ can generate a processed dataframe directly
@@ -391,3 +390,48 @@ def find_best_k_features_from_ANOVA(model, *args):
     plot_ANOVA_test_graph(train_acc_dict, test_acc_dict)
 
     return train_test_dataset[best_test_k]
+
+
+def evaluate_model(models, params,*args):
+    """
+    Evaluate multiple models using GridSearchCV and return their R-squared scores.
+
+    Args:
+        x_train (array-like): Training input samples.
+        y_train (array-like): Target values for training.
+        x_test (array-like): Test input samples.
+        y_test (array-like): Target values for testing.
+        models (dict): Dictionary of models to evaluate.
+        params (dict): Dictionary of parameter grids for GridSearchCV.
+
+    Returns:
+        dict: Dictionary containing model names as keys and their R-squared scores as values.
+    """
+
+    X_train = args[0]
+    X_test = args[1]
+    y_train = args[2]
+    y_test = args[3]
+
+    report = {}
+
+    for i in range(len(list(models))):
+        model = list(models.values())[i]
+        para = params[list(models.keys())[i]]
+
+        gs = GridSearchCV(model, para, cv=3)
+        gs.fit(X_train, y_train)
+
+        model.set_params(**gs.best_params_)
+        model.fit(X_train, y_train)
+
+        # y_train_pred = model.predict(x_train)
+
+        y_test_pred = model.predict(X_test)
+
+        # train_model_score = r2_score(y_train, y_train_pred)
+
+        test_model_score = r2_score(y_test, y_test_pred)
+
+        report[list(models.keys())[i]] = test_model_score
+    return report
