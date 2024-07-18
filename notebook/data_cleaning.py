@@ -216,9 +216,10 @@ def df_null_removal(df):
     return X_scaled_df, y
 
 
-# funciton for feature selection
+# function for feature selection
 def drop_high_corr(df, threshold=0.7):
-    correlation_matrix = df.corr()
+    X,y = get_Xy(df)
+    correlation_matrix = X.corr()
     high_cor = []
     dropped_features = []
 
@@ -242,15 +243,23 @@ def drop_high_corr(df, threshold=0.7):
         # Check if either of the features in the pair has already been dropped
         if feature1 not in dropped_features and feature2 not in dropped_features:
             # Check if the feature exists in the DataFrame before attempting to drop it
-            if feature2 in df.columns:
+            if feature2 in X.columns:
                 # Drop one of the correlated features from the dataset
                 # Here, we arbitrarily choose to drop the second feature in the pair
-                df.drop(feature2, axis=1, inplace=True)
+                X.drop(feature2, axis=1, inplace=True)
                 dropped_features.append(feature2)
             else:
                 print("Feature '" + feature2 + "' not found in the DataFrame.")
 
+    X.reset_index(drop=True, inplace=True)
+    y.reset_index(drop=True, inplace=True)
+    df = pd.concat([X, y], axis=1)
+    
     return df
+
+
+
+
 
 
 # secondary cleaning
