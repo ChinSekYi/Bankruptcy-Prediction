@@ -5,10 +5,10 @@ from imblearn.over_sampling import SMOTE
 from scipy.stats import boxcox
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.feature_selection import SelectKBest, f_classif
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.metrics import r2_score
+from sklearn.model_selection import GridSearchCV, train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, MinMaxScaler
-from sklearn.metrics import r2_score
 
 """
 functions starting with df_ can generate a processed dataframe directly
@@ -363,7 +363,7 @@ def get_df_with_top_k_features(k_features, *args):  # after pre_process(df)
 def find_best_k_features_from_ANOVA(model, *args):
     X_train = args[0]
     original_n_features = len(X_train.columns)
-    
+
     train_acc_dict = {}  # 0 is a dummy accuracy for k=0 features
     test_acc_dict = {}
     train_test_dataset = {}
@@ -374,7 +374,9 @@ def find_best_k_features_from_ANOVA(model, *args):
         train_test_dataset[k] = train_test_dataset_after_ANOVA
         train_acc_dict[k] = train_accuracy
         test_acc_dict[k] = test_accuracy
-        print(f"k: {k}, train_accuracy: {train_accuracy}, test_accuracy: {test_accuracy}")
+        print(
+            f"k: {k}, train_accuracy: {train_accuracy}, test_accuracy: {test_accuracy}"
+        )
 
     # Find k that gives the highest accuracy
     best_train_k = max(train_acc_dict, key=train_acc_dict.get)
@@ -426,7 +428,6 @@ def evaluate_model(model, params, *args):
     test_model_r2score = r2_score(y_test, y_test_pred)
 
     return train_model_r2score, test_model_r2score
-
 
 
 def train_and_evaluate_model(model, *args):
