@@ -255,7 +255,7 @@ def drop_high_corr(X, threshold=0.7):
 
 
 def drop_corr_columns_from_test(X_test, dropped_features):
-    X_test_dropped = X_test.drop(columns=dropped_features, errors='ignore')
+    X_test_dropped = X_test.drop(columns=dropped_features, errors="ignore")
     return X_test_dropped
 
 

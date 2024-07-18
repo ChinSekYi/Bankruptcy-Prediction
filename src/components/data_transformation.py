@@ -16,7 +16,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import FunctionTransformer, MinMaxScaler
 
 from notebook.data_cleaning import AsDiscrete, map_class_labels
-
 # Custom imports
 from src.exception import CustomException
 from src.logger import logging
