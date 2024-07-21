@@ -37,20 +37,20 @@ Features Include:
    
 ## Installation
 1. Clone the Repository
-```
-git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
-cd Bankruptcy-Prediction
-```
+    ```
+    git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
+    cd Bankruptcy-Prediction
+    ```
 
-2. Create and activate virtual environment
-  - Using Anaconda:
+2. Create and activate virtual environment  
+     Using Anaconda:  
     - <a href="https://docs.anaconda.com/free/miniconda/index.html" target="_blank">Miniconda Installation Guide</a>
     - <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html" target="_blank">Windows Installation Guide</a>
     ```
     conda create -n dev python=3.11 
     conda activate dev
     ```
-  - else:
+    Using venv:
     ```
     python -m venv dev
     source dev/bin/activate  #On macOS/Linux
@@ -58,9 +58,9 @@ cd Bankruptcy-Prediction
     ```
 
 3. Install Project Dependencies   
-```
-make install
-```
+    ```
+    make install
+    ```
 
 ## Usage
 Open the following 3 notebooks:
@@ -78,17 +78,17 @@ Open the following 3 notebooks:
     ```
 
 ## Accessing the WebApp
-### Run Flask app using CLI
-```
-cd Bankruptcy-Prediction
-python3 app.py
-```
+1. Run Flask app using CLI
+    ```
+    cd Bankruptcy-Prediction
+    python3 app.py
+    ```
 
-Then, access the application by clicking on one of the links below:  
-- <a href="http://0.0.0.0:5001" target="_blank">Home page</a>
-- <a href="http://0.0.0.0:5001/predictdata" target="_blank">Prediction page</a>
+    Then, access the application by clicking on one of the links below:  
+    - <a href="http://0.0.0.0:5001" target="_blank">Home page</a>
+    - <a href="http://0.0.0.0:5001/predictdata" target="_blank">Prediction page</a>
 
-### Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)
-- <a href="https://bankruptcy-prediction.azurewebsites.net/" target="_blank">Home page</a>
-- <a href="https://bankruptcy-prediction.azurewebsites.net/predictdata" target="_blank">Prediction page</a>
- 
+2. Access WebApp deployed through Microsoft Azure (Not active for now to avoid billing)
+    - <a href="https://bankruptcy-prediction.azurewebsites.net/" target="_blank">Home page</a>
+    - <a href="https://bankruptcy-prediction.azurewebsites.net/predictdata" target="_blank">Prediction page</a>
+   
