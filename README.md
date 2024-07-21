@@ -7,14 +7,15 @@
 </div>
 
 ## Table of Contents
-1. Project Motivation & Description
-2. Proposed solution
-3. Dataset
-4. Technologies Used
-5. Installation
-
+1. [Project Motivation and Description](#project-motivation-and-description)
+2. [Proposed solution](#proposed-solution)
+3. [Dataset](#dataset)
+4. [Technologies Used](#technologies-used)
+5. [Installation](#installation)
+6. [Usage](#usage)
+7. [Accessing the WebApp](#accessing-the-webapp)
    
-## Project Motivation & Description
+## Project Motivation and Description
 In today's dynamic business environment, anticipating financial risks is crucial. This project aims to develop a predictive model for company bankruptcy using advanced machine learning algorithms and financial data analysis. By identifying early signs of financial distress, stakeholders can make informed decisions to prevent bankruptcy, minimizing financial losses.
 
 We explore various machine learning models to predict company bankruptcy, focusing on improving accuracy. The dataset, from Polish companies, spans 2000-2013 and includes 64 features related to profitability, liquidity, solvency, and operational efficiency.
@@ -35,34 +36,31 @@ Features Include:
 
    
 ## Installation
-### Install Anaconda:
-- <a href="https://docs.anaconda.com/free/miniconda/index.html" target="_blank">Miniconda Installation Guide</a>
-- <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html" target="_blank">Windows Installation Guide</a>
-
 1. Clone the Repository
 ```
 git clone https://github.com/ChinSekYi/Bankruptcy-Prediction.git
 cd Bankruptcy-Prediction
 ```
 
-2. Create & activate virtual environment
-- Using Anaconda:
-  ```
-  conda create -n dev python=3.11 
-  conda activate dev
-  ```
-- else:
-  ```
-  python -m venv dev
-  source dev/bin/activate  #On macOS/Linux
-  source dev/bin/activate  #On Windows
-  ```
+2. Create and activate virtual environment
+  - Using Anaconda:
+    - <a href="https://docs.anaconda.com/free/miniconda/index.html" target="_blank">Miniconda Installation Guide</a>
+    - <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/windows.html" target="_blank">Windows Installation Guide</a>
+    ```
+    conda create -n dev python=3.11 
+    conda activate dev
+    ```
+  - else:
+    ```
+    python -m venv dev
+    source dev/bin/activate  #On macOS/Linux
+    source dev/bin/activate  #On Windows
+    ```
 
 3. Install Project Dependencies   
 ```
 make install
 ```
-<br>
 
 ## Usage
 Open the following 3 notebooks:
@@ -78,7 +76,7 @@ Open the following 3 notebooks:
     ```
     jupyter notebook notebook/MODEL_TRAINING.ipynb   
     ```
-    
+
 ## Accessing the WebApp
 ### Run Flask app using CLI
 ```
