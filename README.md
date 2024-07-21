@@ -12,8 +12,9 @@
 3. [Dataset](#dataset)
 4. [Technologies Used](#technologies-used)
 5. [Installation](#installation)
-6. [Usage](#usage)
-7. [Accessing the WebApp](#accessing-the-webapp)
+6. [Makefile Commands](#makefile-commands)
+7. [Usage](#usage)
+8. [Accessing the WebApp](#accessing-the-webapp)
    
 ## Project Motivation and Description
 In today's dynamic business environment, anticipating financial risks is crucial. This project aims to develop a predictive model for company bankruptcy using advanced machine learning algorithms and financial data analysis. By identifying early signs of financial distress, stakeholders can make informed decisions to prevent bankruptcy, minimizing financial losses.
@@ -61,6 +62,15 @@ Features Include:
     ```
     make install
     ```
+
+## Makefile Commands
+- `make install`: Upgrades `pip` and installs the dependencies listed in `requirements.txt`.
+- `make test`: Runs tests using `pytest` on `test.py`. (Note: You can also run tests on notebooks by uncommenting the `#--nbval` line if needed.)
+- `make format`: Formats all Python files using `isort` and `black`.
+- `make run`: Runs the `main.py` script.
+- `make lint`: Lints the code with `pylint`, excluding certain message types (R and C) for the specified directories and files.
+- `make all`: Executes `install`, `format`, and `lint` commands in sequence.
+
 
 ## Usage
 Open the following 3 notebooks:
