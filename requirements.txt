@@ -1,4 +1,4 @@
-numpy<2
+numpy>=1.23,<2.0
 pybind11>=2.12
 pandas==2.0.3
 seaborn==0.12.2
@@ -13,11 +13,12 @@ cufflinks==0.17.3
 black==23.7.0
 isort==5.12.0
 pylint==2.17.5
-pytest==7.6.1
+pytest==8.3.3
 nbval==0.9.1
-flask==2.3.4
+flask>=3.0.3
 tqdm==4.65.0
-ipykernel==6.22.1
+ipykernel>=6.29.5
 requests==2.31.0
 dill==0.3.7
+chart_studio
 #-e .
