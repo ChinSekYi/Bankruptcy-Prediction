@@ -1,4 +1,4 @@
-# Predict Company Bankruptcy using Machine Learning
+# Bankruptcy Prediction of Polish Companies using Machine Learning
 
 <div style="display: flex; justify-content: center;">
   <img src="images/Homepage.png" alt="Model Diagram 1" style="width: 300px; height: 200px; margin-right: 20px;">
